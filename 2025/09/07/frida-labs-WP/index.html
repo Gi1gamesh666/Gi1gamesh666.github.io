@@ -1,0 +1,891 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Gilgamesh">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Frida Labs 同一道题有时候用 frida hook 了返回结果就能输出结果，但是如果输入成功了并不会返回正确值就要逆向，所有 ctf 出题的时候都只存储 flag 的密码，然后将输入值加密后再与其对比，这时候 frida 就没什么用ctf 里面的安卓大多数是为了逆向，但是实际应用中，frida 大多用来绕过，因为并没有那么多需要逆向的地方  https:&#x2F;&#x2F;github.com&#x2F;DERE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="frida-labs WP">
+<meta property="og:url" content="http://example.com/2025/09/07/frida-labs-WP/index.html">
+<meta property="og:site_name" content="APT114514">
+<meta property="og:description" content="Frida Labs 同一道题有时候用 frida hook 了返回结果就能输出结果，但是如果输入成功了并不会返回正确值就要逆向，所有 ctf 出题的时候都只存储 flag 的密码，然后将输入值加密后再与其对比，这时候 frida 就没什么用ctf 里面的安卓大多数是为了逆向，但是实际应用中，frida 大多用来绕过，因为并没有那么多需要逆向的地方  https:&#x2F;&#x2F;github.com&#x2F;DERE">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/SExxbfm2goT7dBxYapycC0EAndd.png">
+<meta property="og:image" content="http://example.com/img/SYXqbumv9oFVr2xFmnHcITpfnGb.png">
+<meta property="og:image" content="http://example.com/img/D4SgbhpzeoQWIUxjRDCc0cHbnGg.png">
+<meta property="og:image" content="http://example.com/img/SeZMbLhsBomJ7axAG17clhbznqc.png">
+<meta property="og:image" content="http://example.com/img/Ffolb9pEyoKgY3x8kGrchy1TnKh.png">
+<meta property="og:image" content="http://example.com/img/FXuLbzqlCo2WgyxWzFccvX4Yn9g.png">
+<meta property="og:image" content="http://example.com/img/MCiibvYKEoZWxtxXu3KcfIlAnMu.png">
+<meta property="og:image" content="http://example.com/img/UGsubWnD1oQ6LTxnzfrcQk6Fn2f.png">
+<meta property="og:image" content="http://example.com/img/PMUabv9ybo5qRxxbbwrcusjFnZg.png">
+<meta property="og:image" content="http://example.com/img/VA7sb7ZA6o7wL9xksP8cVCywnuc.png">
+<meta property="og:image" content="http://example.com/img/MhRabQ1RcoHQ9OxJAhwck0H1nCd.png">
+<meta property="og:image" content="http://example.com/img/EZaQbwN3loxDNHx2WNGcjnjxnHb.png">
+<meta property="og:image" content="http://example.com/img/MeSvbxW9WoW9GLxNAmycpiGNnSb.png">
+<meta property="og:image" content="http://example.com/img/Mq6IbwvrLojLQyxIe1PcNr8cnOb.png">
+<meta property="og:image" content="http://example.com/img/JyRkbVHz4ojQ6YxNmd4coOyEnWS.png">
+<meta property="og:image" content="http://example.com/img/DhgNbLHrOoXWcUxUmEVcu9oqn8e.png">
+<meta property="og:image" content="http://example.com/img/VBC5bGooqo3agYxOgQ7cFCqanae.png">
+<meta property="og:image" content="http://example.com/img/KYRBbu5p4otMLoxevdFcASEznZc.png">
+<meta property="og:image" content="http://example.com/img/XaP7bHlMxoTr9ZxpZQ5cl5cFnAh.png">
+<meta property="og:image" content="http://example.com/img/NWvJbCR5uoBCnAxAKwschvK4nGc.png">
+<meta property="og:image" content="http://example.com/img/RXdhbk0NQohW0KxQR51cLL0Onmf.png">
+<meta property="og:image" content="http://example.com/img/JkfWbnXWboxJ22xo9CkcHFvQnPe.png">
+<meta property="og:image" content="http://example.com/img/LcEsbBGeZoq1dbxbq9NcKXZ3ntb.png">
+<meta property="og:image" content="http://example.com/img/PIitbsQSxojfwBxQFs6cvRJQnce.png">
+<meta property="og:image" content="http://example.com/img/R1QUbcN7Oo8SXBxyj8VcUuuZn8f.png">
+<meta property="og:image" content="http://example.com/img/TcXrboLDToB5YexWEfycZcl8nlh.png">
+<meta property="og:image" content="http://example.com/img/X290bRlioogi7pxScJycsaWRnWf.png">
+<meta property="og:image" content="http://example.com/img/LL91b7fcXoUIoLxUL0lcUBcfndQ.png">
+<meta property="og:image" content="http://example.com/img/WCFrbDlC5oflbgxqVdkcXUzEnCc.png">
+<meta property="og:image" content="http://example.com/img/QT2WbNxEooUWUqx4KDOcBGKyniI.png">
+<meta property="og:image" content="http://example.com/img/KzKjbvTmfo57eKx3zcWcEX82nwc.png">
+<meta property="og:image" content="http://example.com/img/AGegbPlSCoVv8ux8Ea6cU9uxndg.png">
+<meta property="og:image" content="http://example.com/img/OFaib17p6oWSeWxtOqEc5LD1nyf.png">
+<meta property="og:image" content="http://example.com/img/O8wSb6CqwoXfO7xaxWicKd9gnHg.png">
+<meta property="og:image" content="http://example.com/img/Fun9bL1b9oFZjsxdsUZcDIiMnBg.png">
+<meta property="og:image" content="http://example.com/img/OWKVbShuHoFl9vxPMsncu9i0nTf.png">
+<meta property="og:image" content="http://example.com/img/Tjzcb1KE1oRez9x1sTOc0aaXnFg.png">
+<meta property="og:image" content="http://example.com/img/UnYebC5W7osjhYxtBircQsElnDb.png">
+<meta property="og:image" content="http://example.com/img/AMOJbsPOqoBWLqxKV9rcIvgtnVg.png">
+<meta property="og:image" content="http://example.com/img/XjOsbDfWioCWy2xr6q8cHkDinvg.png">
+<meta property="og:image" content="http://example.com/img/GpnHbEimzo1O27xR8wfcaLzgnDg.png">
+<meta property="og:image" content="http://example.com/img/VStAbAkgnoXZ9uxnj4bczLkknmo.png">
+<meta property="og:image" content="http://example.com/img/UaWRbuzROoqcBcxejt1ckYENnag.png">
+<meta property="og:image" content="http://example.com/img/XXyvbvt4NolkYvxPERBcIhnBnew.png">
+<meta property="og:image" content="http://example.com/img/Czumb2PJHo40aPx7OXKcMsdnnqc.png">
+<meta property="og:image" content="http://example.com/img/PTlHb8Y7Gog49px4V5RcNMdjnlh.png">
+<meta property="og:image" content="http://example.com/img/WyFgbmea2oslkIxwWOYcsgKDnkd.png">
+<meta property="og:image" content="http://example.com/img/QyJAbllh9oriKDxDVkkcehlMnmd.png">
+<meta property="og:image" content="http://example.com/img/DNFrbHeB7oRhMyxe5gacVRobnXd.png">
+<meta property="og:image" content="http://example.com/img/Amy0b98FEoFnfSxyX6GcSwWQncf.png">
+<meta property="og:image" content="http://example.com/img/VhM6bjDhVoP6Jqxe9p0cL1nBn19.png">
+<meta property="og:image" content="http://example.com/img/EtNPblR9BoN8OHxZGqVcRSjpnYf.png">
+<meta property="og:image" content="http://example.com/img/WK3wb7QmgoLaXtxnslxc6i2On4O.png">
+<meta property="og:image" content="http://example.com/img/UCf9bFWkWokJnPx9a01cpIH2nLb.png">
+<meta property="og:image" content="http://example.com/img/FhmAb0ehjoXgdux49V5cj3CSnmb.png">
+<meta property="article:published_time" content="2025-09-07T11:23:52.000Z">
+<meta property="article:modified_time" content="2025-09-07T11:25:35.345Z">
+<meta property="article:author" content="Gilgamesh">
+<meta property="article:tag" content="WP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/SExxbfm2goT7dBxYapycC0EAndd.png">
+  
+  
+  
+  <title>frida-labs WP - APT114514</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="frida-labs WP"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-09-07 19:23" pubdate>
+          2025年9月7日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          34 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">frida-labs WP</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Frida-Labs"><a href="#Frida-Labs" class="headerlink" title="Frida Labs"></a>Frida Labs</h1><blockquote>
+<p>同一道题有时候用 frida hook 了返回结果就能输出结果，但是如果输入成功了并不会返回正确值就要逆向，所有 ctf 出题的时候都只存储 flag 的密码，然后将输入值加密后再与其对比，这时候 frida 就没什么用<br>ctf 里面的安卓大多数是为了逆向，但是实际应用中，frida 大多用来绕过，因为并没有那么多需要逆向的地方</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/DERE-ad2001/Frida-Labs.git">https://github.com/DERE-ad2001/Frida-Labs.git</a></p>
+<h1 id="0x1"><a href="#0x1" class="headerlink" title="0x1"></a>0x1</h1><p>第一关就是一个很典型的案例，flag 是被加密的，如果输入了正确的数值就自动解密将其输出获得 flag，此时可以直接解密获得到 flag，但从 frida 角度来看，可以直接固定 <code>get_random</code> 方法的返回值，直接获取 flag</p>
+<p><img src="/img/SExxbfm2goT7dBxYapycC0EAndd.png" srcset="/img/loading.gif" lazyload></p>
+<p>固定 <code>get_random</code> 返回值为 1</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br><span class="hljs-keyword">var</span> a = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;com.ad2001.frida0x1.MainActivity&quot;</span>)<br>a.<span class="hljs-property">get_random</span>.<span class="hljs-property">implementation</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;get_random called&quot;</span>)<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>&#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>因为他的判断不是很难，<code>(i * 2) + 4 == i2</code> 所以只需要找一个满足这个关系的两个数就可以让直接输出 flag</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">var</span> a = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;com.ad2001.frida0x1.MainActivity&quot;</span>);<br>  a.<span class="hljs-property">check</span>.<span class="hljs-title function_">overload</span>(<span class="hljs-string">&#x27;int&#x27;</span>, <span class="hljs-string">&#x27;int&#x27;</span>).<span class="hljs-property">implementation</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params">a, b</span>) &#123;<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">check</span>(<span class="hljs-number">4</span>, <span class="hljs-number">12</span>);<br>  &#125;<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p>check 函数是一个 void 函数，没有返回值，不能直接获取其返回值，但他弹窗的时候又去调用了 <code>setText</code> 方法，直接 hook 其参数打印出 flag</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">var</span> <span class="hljs-title class_">TextView</span> = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;android.widget.TextView&quot;</span>);<br><br>    <span class="hljs-title class_">TextView</span>.<span class="hljs-property">setText</span>.<span class="hljs-title function_">overload</span>(<span class="hljs-string">&#x27;java.lang.CharSequence&#x27;</span>).<span class="hljs-property">implementation</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">text</span>) &#123;<br>        <span class="hljs-keyword">var</span> content = text.<span class="hljs-title function_">toString</span>();<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[*] 检测到 TextView.setText() 被调用，内容是: &quot;</span> + content);   <br>        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">setText</span>(text);<br>    &#125;;<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p>两个脚本结合来用，就可以让他直接打印 flag 到命令行中</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br><br>    <span class="hljs-keyword">var</span> <span class="hljs-title class_">MainActivity</span> = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;com.ad2001.frida0x1.MainActivity&quot;</span>);<br> <br>    <span class="hljs-title class_">MainActivity</span>.<span class="hljs-property">check</span>.<span class="hljs-title function_">overload</span>(<span class="hljs-string">&#x27;int&#x27;</span>, <span class="hljs-string">&#x27;int&#x27;</span>).<span class="hljs-property">implementation</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">a, b</span>) &#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[*] 拦截到 check()，原始参数为: &quot;</span> + a + <span class="hljs-string">&quot;, &quot;</span> + b);<br>        <span class="hljs-keyword">var</span> result = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">check</span>(<span class="hljs-number">4</span>, <span class="hljs-number">12</span>); <br>    &#125;;<br><br>    <span class="hljs-keyword">var</span> <span class="hljs-title class_">TextView</span> = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;android.widget.TextView&quot;</span>);<br><br>    <span class="hljs-title class_">TextView</span>.<span class="hljs-property">setText</span>.<span class="hljs-title function_">overload</span>(<span class="hljs-string">&#x27;java.lang.CharSequence&#x27;</span>).<span class="hljs-property">implementation</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">text</span>) &#123;<br>        <span class="hljs-keyword">var</span> content = text.<span class="hljs-title function_">toString</span>();<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[*] TextView 显示的内容是: &quot;</span> + content);<br><br>        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">setText</span>(text);<br>    &#125;;<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs http">frida -U -f com.ad2001.frida0x1 -l .\frida.js<br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/SYXqbumv9oFVr2xFmnHcITpfnGb.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="0x2"><a href="#0x2" class="headerlink" title="0x2"></a>0x2</h1><p>这关比较特别该应用目前唯一在做的事情就是设置 TextView，并且定义一个 get_flag 函数</p>
+<p><img src="/img/D4SgbhpzeoQWIUxjRDCc0cHbnGg.png" srcset="/img/loading.gif" lazyload></p>
+<p>但是该函数没有一处调用</p>
+<p><img src="/img/SeZMbLhsBomJ7axAG17clhbznqc.png" srcset="/img/loading.gif" lazyload></p>
+<p>所以需要我们去主动调用该方法才能打印出 flag</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">var</span> <span class="hljs-title class_">MainActivity</span> = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;com.ad2001.frida0x2.MainActivity&quot;</span>);<br>    <span class="hljs-title class_">MainActivity</span>.<span class="hljs-title function_">get_flag</span>(<span class="hljs-number">4919</span>);<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>由于没有直接调用，所以直接注入 frida 脚本不能直接获取 flag，得在 app 环境下运行脚本才能调用成功</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">frida -U -f com.<span class="hljs-property">ad2001</span>.<span class="hljs-property">frida0x2</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/Ffolb9pEyoKgY3x8kGrchy1TnKh.png" srcset="/img/loading.gif" lazyload></p>
+<p>前者不能直接使用脚本注入，是因为 frida 脚本早于 Activity 创建就已经注入了，TextView 还没初始化，调用 t1.setText() 会失败，无法显示内容，最好的方法就是在脚本中加入延时等 Activity 初始化后再注入</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br><br>    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-keyword">var</span> <span class="hljs-title class_">MainActivity</span> = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;com.ad2001.frida0x2.MainActivity&quot;</span>);<br>        <span class="hljs-title class_">MainActivity</span>.<span class="hljs-title function_">get_flag</span>(<span class="hljs-number">4919</span>);<br>    &#125;, <span class="hljs-number">2000</span>);<br><br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">frida -U -f com.<span class="hljs-property">ad2001</span>.<span class="hljs-property">frida0x2</span> -l .\<span class="hljs-number">0x2</span>.<span class="hljs-property">js</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/FXuLbzqlCo2WgyxWzFccvX4Yn9g.png" srcset="/img/loading.gif" lazyload></p>
+<p>可以直接 hook TextView 类的 setText 方法直接将 flag 打印到命令行中</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br><br>    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-keyword">var</span> <span class="hljs-title class_">MainActivity</span> = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;com.ad2001.frida0x2.MainActivity&quot;</span>);<br>        <span class="hljs-title class_">MainActivity</span>.<span class="hljs-title function_">get_flag</span>(<span class="hljs-number">4919</span>);<br>    &#125;, <span class="hljs-number">2000</span>);<br><br>    <span class="hljs-keyword">var</span> <span class="hljs-title class_">TextView</span> = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;android.widget.TextView&quot;</span>)<br>    <span class="hljs-title class_">TextView</span>.<span class="hljs-property">setText</span>.<span class="hljs-title function_">overload</span>(<span class="hljs-string">&#x27;java.lang.CharSequence&#x27;</span>).<span class="hljs-property">implementation</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">text</span>) &#123;<br>    <span class="hljs-keyword">var</span> content = text.<span class="hljs-title function_">toString</span>();<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[*] TextView 显示的内容是: &quot;</span> + content);<br>    &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/MCiibvYKEoZWxtxXu3KcfIlAnMu.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="0x3"><a href="#0x3" class="headerlink" title="0x3"></a>0x3</h1><p>只有当 code 的值为 512 的时候才能输出 flag</p>
+<p><img src="/img/UGsubWnD1oQ6LTxnzfrcQk6Fn2f.png" srcset="/img/loading.gif" lazyload></p>
+<p>但是 checker 类中的 increase 方法并没有被调用，所以 code 是不可能为 512 的</p>
+<p><img src="/img/PMUabv9ybo5qRxxbbwrcusjFnZg.png" srcset="/img/loading.gif" lazyload></p>
+<p>直接将 code 的值修改为 512</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br><br>    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-keyword">var</span> check = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;com.ad2001.frida0x3.Checker&quot;</span>);<br>        check.<span class="hljs-property">code</span>.<span class="hljs-property">value</span> = <span class="hljs-number">512</span>;<br>    &#125;, <span class="hljs-number">2000</span>);<br><br>    <span class="hljs-keyword">var</span> <span class="hljs-title class_">TextView</span> = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;android.widget.TextView&quot;</span>);<br><br>    <span class="hljs-title class_">TextView</span>.<span class="hljs-property">setText</span>.<span class="hljs-title function_">overload</span>(<span class="hljs-string">&#x27;java.lang.CharSequence&#x27;</span>).<span class="hljs-property">implementation</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">text</span>) &#123;<br>        <span class="hljs-keyword">var</span> content = text.<span class="hljs-title function_">toString</span>();<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[*] TextView 显示的内容是: &quot;</span> + content);<br><br>        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">setText</span>(text);<br>    &#125;;<br><br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">frida -U -f com.ad2001.frida0x3 -l .\<span class="hljs-number">0x3</span>.js<br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/VA7sb7ZA6o7wL9xksP8cVCywnuc.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="0x4"><a href="#0x4" class="headerlink" title="0x4"></a>0x4</h1><p>这一关就只有一个 textview 了</p>
+<p><img src="/img/MhRabQ1RcoHQ9OxJAhwck0H1nCd.png" srcset="/img/loading.gif" lazyload></p>
+<p>可以在 <code>res/layout/activity_main.xml</code> 中找到其定义</p>
+<p><img src="/img/EZaQbwN3loxDNHx2WNGcjnjxnHb.png" srcset="/img/loading.gif" lazyload></p>
+<p>虽然 <code>MainActivity</code> 中没有内容，但是在源码部分可以看到还有一个 <code>Check类</code></p>
+<p><img src="/img/MeSvbxW9WoW9GLxNAmycpiGNnSb.png" srcset="/img/loading.gif" lazyload></p>
+<p>其中有一个 <code>get_flag</code> 方法，同样没有任何引用，我们需要主动调用来输出 flag</p>
+<p><img src="/img/Mq6IbwvrLojLQyxIe1PcNr8cnOb.png" srcset="/img/loading.gif" lazyload></p>
+<p>注意，这里的 Check 没有实例化，frida 实例化类的时候要<strong>使用 $new</strong>**，**<strong>同时不需要声明类的类型统一用 var 即可</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br><br>    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-keyword">var</span> <span class="hljs-title class_">Check</span> = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;com.ad2001.frida0x4.Check&quot;</span>);<br>        <span class="hljs-keyword">var</span> check = <span class="hljs-title class_">Check</span>.$new();<br>        <span class="hljs-keyword">var</span> flag = check.<span class="hljs-title function_">get_flag</span>(<span class="hljs-number">1337</span>);<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[*] 获取到的 flag 为: &quot;</span> + flag);<br>    &#125;, <span class="hljs-number">2000</span>);<br><br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/JyRkbVHz4ojQ6YxNmd4coOyEnWS.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="0x5"><a href="#0x5" class="headerlink" title="0x5"></a>0x5</h1><p>这一关的 flag 函数是直接定义在 MainActivity 中，看似我们可以直接调用 flag 函数让他输出 flag 但是 flag 方法并不是一个静态方法并不能直接通过类名调用，需要从实例化的对象中调用</p>
+<p><img src="/img/DhgNbLHrOoXWcUxUmEVcu9oqn8e.png" srcset="/img/loading.gif" lazyload></p>
+<p>如果直接调用必然会报错</p>
+<p><img src="/img/VBC5bGooqo3agYxOgQ7cFCqanae.png" srcset="/img/loading.gif" lazyload></p>
+<p>既然不能直接通过类名调用，那就实例化对象调用，但是当前类是 <code>MainActivity</code> ，如果去创建一个新的 <code>MainActivity</code> 对象 这样就等于非主线程中创建了 Android UI 组件或 Handler 相关的对象，这是 Android 不允许的</p>
+<p><img src="/img/KYRBbu5p4otMLoxevdFcASEznZc.png" srcset="/img/loading.gif" lazyload></p>
+<p>所以最好的方法就是使用 <code>Java.choose</code> 从内存直接调用现有的实例</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Java</span>.<span class="hljs-title function_">performNow</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">choose</span>(<span class="hljs-string">&#x27;com.ad2001.frida0x5.MainActivity&#x27;</span>, &#123;<br>      <span class="hljs-attr">onMatch</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params">instance</span>) &#123;<br>        instance.<span class="hljs-title function_">flag</span>(<span class="hljs-number">1337</span>);<br>    &#125;,<br>    <span class="hljs-attr">onComplete</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;&#125;<br>  &#125;);<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p>注意 hook TextView 的时机需要早于 flag 方法调用时间</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-built_in">setTimeout</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-keyword">var</span> <span class="hljs-title class_">TextView</span> = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;android.widget.TextView&quot;</span>);<br>        <span class="hljs-title class_">TextView</span>.<span class="hljs-property">setText</span>.<span class="hljs-title function_">overload</span>(<span class="hljs-string">&#x27;java.lang.CharSequence&#x27;</span>).<span class="hljs-property">implementation</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">text</span>) &#123;<br>            <span class="hljs-keyword">var</span> content = text.<span class="hljs-title function_">toString</span>();<br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[*] TextView 显示的内容是: &quot;</span> + content);<br>            <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">setText</span>(text);<br>        &#125;;<br><br>        <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">choose</span>(<span class="hljs-string">&#x27;com.ad2001.frida0x5.MainActivity&#x27;</span>, &#123;<br>            <span class="hljs-attr">onMatch</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params">instance</span>) &#123;<br>                instance.<span class="hljs-title function_">flag</span>(<span class="hljs-number">1337</span>);<br>            &#125;,<br>            <span class="hljs-attr">onComplete</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>            &#125;<br>        &#125;);<br>    &#125;);<br>&#125;, <span class="hljs-number">2000</span>);<br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/XaP7bHlMxoTr9ZxpZQ5cl5cFnAh.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="0x6"><a href="#0x6" class="headerlink" title="0x6"></a>0x6</h1><p>这一关跟上一关差不多，只不过 get_flag 方法的参数是一个对象</p>
+<p><img src="/img/NWvJbCR5uoBCnAxAKwschvK4nGc.png" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-built_in">setTimeout</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-keyword">var</span> <span class="hljs-title class_">TextView</span> = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;android.widget.TextView&quot;</span>);<br>        <span class="hljs-title class_">TextView</span>.<span class="hljs-property">setText</span>.<span class="hljs-title function_">overload</span>(<span class="hljs-string">&#x27;java.lang.CharSequence&#x27;</span>).<span class="hljs-property">implementation</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">text</span>) &#123;<br>            <span class="hljs-keyword">var</span> content = text.<span class="hljs-title function_">toString</span>();<br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[*] TextView 显示的内容是: &quot;</span> + content);<br>            <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">setText</span>(text);<br>        &#125;;<br><br>        <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">choose</span>(<span class="hljs-string">&#x27;com.ad2001.frida0x6.MainActivity&#x27;</span>, &#123;<br><br>            <span class="hljs-attr">onMatch</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params">instance</span>) &#123;<br>              <span class="hljs-keyword">var</span> <span class="hljs-title class_">Checker</span> = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;com.ad2001.frida0x6.Checker&quot;</span>);<br>              <span class="hljs-keyword">var</span> checker  = <span class="hljs-title class_">Checker</span>.$new();<br>              checker.<span class="hljs-property">num1</span>.<span class="hljs-property">value</span> = <span class="hljs-number">1234</span>;<br>              checker.<span class="hljs-property">num2</span>.<span class="hljs-property">value</span> = <span class="hljs-number">4321</span>;<br>                instance.<span class="hljs-title function_">get_flag</span>(checker);<br>            &#125;,<br>            <span class="hljs-attr">onComplete</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>            &#125;<br>        &#125;);<br>    &#125;);<br>&#125;, <span class="hljs-number">2000</span>);<br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/RXdhbk0NQohW0KxQR51cLL0Onmf.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="0x7"><a href="#0x7" class="headerlink" title="0x7"></a>0x7</h1><p>这一关跟上关差不多，用同样的脚本就能做</p>
+<p><img src="/img/JkfWbnXWboxJ22xo9CkcHFvQnPe.png" srcset="/img/loading.gif" lazyload></p>
+<p>但是注入会提示重载方法参数类型错误</p>
+<p><img src="/img/LcEsbBGeZoq1dbxbq9NcKXZ3ntb.png" srcset="/img/loading.gif" lazyload></p>
+<p>发现 Checker 类中有一个构造函数，对象初始化的时候会调用该方法，所以会产生报错</p>
+<p><img src="/img/PIitbsQSxojfwBxQFs6cvRJQnce.png" srcset="/img/loading.gif" lazyload></p>
+<p>因此仅需要在实例化对象的时候给构造函数赋值即可</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-built_in">setTimeout</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-keyword">var</span> <span class="hljs-title class_">TextView</span> = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;android.widget.TextView&quot;</span>);<br>        <span class="hljs-title class_">TextView</span>.<span class="hljs-property">setText</span>.<span class="hljs-title function_">overload</span>(<span class="hljs-string">&#x27;java.lang.CharSequence&#x27;</span>).<span class="hljs-property">implementation</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">text</span>) &#123;<br>            <span class="hljs-keyword">var</span> content = text.<span class="hljs-title function_">toString</span>();<br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[*] TextView 显示的内容是: &quot;</span> + content);<br>            <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">setText</span>(text);<br>        &#125;;<br><br>        <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">choose</span>(<span class="hljs-string">&#x27;com.ad2001.frida0x7.MainActivity&#x27;</span>, &#123;<br><br>            <span class="hljs-attr">onMatch</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params">instance</span>) &#123;<br>              <span class="hljs-keyword">var</span> <span class="hljs-title class_">Checker</span> = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;com.ad2001.frida0x7.Checker&quot;</span>);<br>              <span class="hljs-keyword">var</span> checker  = <span class="hljs-title class_">Checker</span>.$new(<span class="hljs-number">600</span>,<span class="hljs-number">600</span>);<br>                instance.<span class="hljs-title function_">flag</span>(checker);<br>            &#125;,<br>            <span class="hljs-attr">onComplete</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>            &#125;<br>        &#125;);<br>    &#125;);<br>&#125;, <span class="hljs-number">2000</span>);<br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/R1QUbcN7Oo8SXBxyj8VcUuuZn8f.png" srcset="/img/loading.gif" lazyload></p>
+<p>既然是通过构造函数来完成对象的初始化，不如直接更近一步 hook 构造函数</p>
+<p><code>$init</code> 在 Frida 中用来表示 Java 类的构造函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br><br>  <span class="hljs-keyword">var</span> <span class="hljs-title class_">TextView</span> = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;android.widget.TextView&quot;</span>);<br>  <span class="hljs-title class_">TextView</span>.<span class="hljs-property">setText</span>.<span class="hljs-title function_">overload</span>(<span class="hljs-string">&#x27;java.lang.CharSequence&#x27;</span>).<span class="hljs-property">implementation</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">text</span>) &#123;<br>        <span class="hljs-keyword">var</span> content = text.<span class="hljs-title function_">toString</span>();<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[*] TextView 显示的内容是: &quot;</span> + content);<br>        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">setText</span>(text);<br>    &#125;;<br><br>  <span class="hljs-keyword">var</span> <span class="hljs-title class_">Checker</span> =  <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;com.ad2001.frida0x7.Checker&quot;</span>);<br>  <span class="hljs-title class_">Checker</span>.<span class="hljs-property">$init</span>.<span class="hljs-property">implementation</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params">param</span>)&#123;<br>    <span class="hljs-variable language_">this</span>.$init(<span class="hljs-number">600</span>, <span class="hljs-number">600</span>);<br>  &#125;<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/TcXrboLDToB5YexWEfycZcl8nlh.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="0x8"><a href="#0x8" class="headerlink" title="0x8"></a>0x8</h1><p>这次主逻辑放在了 native 层，通过 <code>System.loadLibrary</code> 加载了一个 native 函数</p>
+<p><img src="/img/X290bRlioogi7pxScJycsaWRnWf.png" srcset="/img/loading.gif" lazyload></p>
+<p>通过比较用户输入的值 s1 与 s2 的，返回一个 bool 值</p>
+<p><img src="/img/LL91b7fcXoUIoLxUL0lcUBcfndQ.png" srcset="/img/loading.gif" lazyload></p>
+<p>s2 的生成逻辑</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &lt; (<span class="hljs-type">unsigned</span> __int64)__strlen_chk(<span class="hljs-string">&quot;GSJEB|OBUJWF`MBOE~&quot;</span>, <span class="hljs-number">-1LL</span>); ++i )<br>    s2[i] = aGsjebObujwfMbo[i] - <span class="hljs-number">1</span>;<br></code></pre></td></tr></table></figure>
+
+<p>aGsjebObujwfMbo 数组的内容也是 <code>GSJEB|OBUJWF</code> MBOE~&#96;</p>
+<p><img src="/img/WCFrbDlC5oflbgxqVdkcXUzEnCc.png" srcset="/img/loading.gif" lazyload></p>
+<p>对每一个字符串的 ascii 值减一即可得到 flag</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">enc = <span class="hljs-string">&quot;GSJEB|OBUJWF`MBOE~&quot;</span><br><br>decrypted_str = <span class="hljs-string">&#x27;&#x27;</span>.join([<span class="hljs-built_in">chr</span>(<span class="hljs-built_in">ord</span>(c) - <span class="hljs-number">1</span>) <span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> enc])<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Flag:&quot;</span>, decrypted_str)<br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/QT2WbNxEooUWUqx4KDOcBGKyniI.png" srcset="/img/loading.gif" lazyload></p>
+<p>frida 也支持 native 层的 hook</p>
+<p>先通过 frida 获取所有导出函数，获取完整的函数签名</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> moduleName = <span class="hljs-string">&quot;libfrida0x8.so&quot;</span>;<br><span class="hljs-keyword">var</span> <span class="hljs-variable language_">module</span> = <span class="hljs-title class_">Process</span>.<span class="hljs-title function_">findModuleByName</span>(moduleName);<br><span class="hljs-keyword">if</span> (<span class="hljs-variable language_">module</span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[*] Found module: &quot;</span> + <span class="hljs-variable language_">module</span>.<span class="hljs-property">name</span> + <span class="hljs-string">&quot; at &quot;</span> + <span class="hljs-variable language_">module</span>.<span class="hljs-property">base</span>);<br>    <span class="hljs-keyword">var</span> a =  <span class="hljs-variable language_">module</span>.<span class="hljs-title function_">enumerateExports</span>();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; a.<span class="hljs-property">length</span>; i++) &#123;<br>        <span class="hljs-keyword">var</span> e = a[i];<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[*] &quot;</span> + e.<span class="hljs-property">name</span> + <span class="hljs-string">&quot;: &quot;</span> + e.<span class="hljs-property">address</span>);<br>     &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/KzKjbvTmfo57eKx3zcWcEX82nwc.png" srcset="/img/loading.gif" lazyload></p>
+<p>native 层中的主要逻辑是调用 <code>strcmp</code> 将输入的字符串和 flag 比较，所以直接 hook <code>libc.so</code> 中的 <code>strcmp</code> 函数就能直接获取到 flag</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> moduleName = <span class="hljs-string">&quot;libc.so&quot;</span>;<br><span class="hljs-keyword">var</span> <span class="hljs-variable language_">module</span> = <span class="hljs-title class_">Process</span>.<span class="hljs-title function_">findModuleByName</span>(moduleName);<br><span class="hljs-keyword">if</span> (<span class="hljs-variable language_">module</span>) &#123;<br>    <span class="hljs-keyword">var</span> strcmpAddr = <span class="hljs-variable language_">module</span>.<span class="hljs-title function_">findExportByName</span>(<span class="hljs-string">&quot;strcmp&quot;</span>);<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[*] strcmp address: &quot;</span> + strcmpAddr);<br><br>    <span class="hljs-title class_">Interceptor</span>.<span class="hljs-title function_">attach</span>(strcmpAddr, &#123;<br>        <span class="hljs-attr">onEnter</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params">args</span>) &#123;<br>            <span class="hljs-keyword">var</span> input = args[<span class="hljs-number">0</span>].<span class="hljs-title function_">readUtf8String</span>();    <span class="hljs-comment">//转换成utf8字符串以免报错</span><br>            <span class="hljs-keyword">var</span> flag = args[<span class="hljs-number">1</span>].<span class="hljs-title function_">readUtf8String</span>();<br>            <span class="hljs-keyword">if</span> (input.<span class="hljs-title function_">includes</span>(<span class="hljs-string">&quot;flag&quot;</span>)) &#123;    <span class="hljs-comment">//只有特定输入值才会打印 以免冗余打印</span><br>                <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[*] flag: &quot;</span> + flag);<br>            &#125;<br>        &#125;<br>    &#125;);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/AGegbPlSCoVv8ux8Ea6cU9uxndg.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="0x9"><a href="#0x9" class="headerlink" title="0x9"></a>0x9</h1><p>这关只有一个 onClick 方法所以我们无法直接输入任何内容，但只需要控制 native 方法 check_flag 的返回值为 1337 即可</p>
+<p><img src="/img/OFaib17p6oWSeWxtOqEc5LD1nyf.png" srcset="/img/loading.gif" lazyload></p>
+<p>遍历导出表，这次就需要直接 hook APK 里的 so 文件里</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> moduleName = <span class="hljs-string">&quot;liba0x9.so&quot;</span>;<br><span class="hljs-keyword">var</span> <span class="hljs-variable language_">module</span> = <span class="hljs-title class_">Process</span>.<span class="hljs-title function_">findModuleByName</span>(moduleName);<br><span class="hljs-keyword">if</span> (<span class="hljs-variable language_">module</span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[*] Found module: &quot;</span> + <span class="hljs-variable language_">module</span>.<span class="hljs-property">name</span> + <span class="hljs-string">&quot; at &quot;</span> + <span class="hljs-variable language_">module</span>.<span class="hljs-property">base</span>);<br>    <span class="hljs-keyword">var</span> a =  <span class="hljs-variable language_">module</span>.<span class="hljs-title function_">enumerateExports</span>();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; a.<span class="hljs-property">length</span>; i++) &#123;<br>        <span class="hljs-keyword">var</span> e = a[i];<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[*] &quot;</span> + e.<span class="hljs-property">name</span> + <span class="hljs-string">&quot;: &quot;</span> + e.<span class="hljs-property">address</span>);<br>     &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/O8wSb6CqwoXfO7xaxWicKd9gnHg.png" srcset="/img/loading.gif" lazyload></p>
+<p>这次用的是 Toast 弹窗</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-built_in">setTimeout</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">var</span> moduleName = <span class="hljs-string">&quot;liba0x9.so&quot;</span>;<br>    <span class="hljs-keyword">var</span> <span class="hljs-variable language_">module</span> = <span class="hljs-title class_">Process</span>.<span class="hljs-title function_">findModuleByName</span>(moduleName);<br>    <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">module</span>) &#123;<br>        <span class="hljs-keyword">var</span> check_flag = <span class="hljs-variable language_">module</span>.<span class="hljs-title function_">findExportByName</span>(<span class="hljs-string">&quot;Java_com_ad2001_a0x9_MainActivity_check_1flag&quot;</span>);<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[*] check_flag address: &quot;</span> + check_flag);<br><br>        <span class="hljs-title class_">Interceptor</span>.<span class="hljs-title function_">attach</span>(check_flag, &#123;<br>            <span class="hljs-attr">onEnter</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params">args</span>) &#123;<br><br>            &#125;,<br>            <span class="hljs-attr">onLeave</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params">retval</span>) &#123;<br>                retval.<span class="hljs-title function_">replace</span>(<span class="hljs-number">1337</span>);<br>                <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[*] check_flag called, retval: &quot;</span> + <span class="hljs-number">1337</span>);<br>            &#125;<br>        &#125;);<br>    &#125;<br><br>    <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-keyword">var</span> <span class="hljs-title class_">Toast</span> = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;android.widget.Toast&quot;</span>);<br>        <span class="hljs-title class_">Toast</span>.<span class="hljs-property">makeText</span>.<span class="hljs-title function_">overload</span>(<span class="hljs-string">&#x27;android.content.Context&#x27;</span>, <span class="hljs-string">&#x27;java.lang.CharSequence&#x27;</span>, <span class="hljs-string">&#x27;int&#x27;</span>).<span class="hljs-property">implementation</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">context, text, duration</span>) &#123;<br>            <span class="hljs-keyword">var</span> content = text.<span class="hljs-title function_">toString</span>();<br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[*] Toast 显示的内容是: &quot;</span> + content);<br>            <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">makeText</span>(context, text, duration);<br>        &#125;;<br>    &#125;);<br><br>&#125;, <span class="hljs-number">2000</span>);<br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/Fun9bL1b9oFZjsxdsUZcDIiMnBg.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="0xA"><a href="#0xA" class="headerlink" title="0xA"></a>0xA</h1><p>只有一个 onCreate 方法，setText 的内容直接就来自 native 方法</p>
+<p><img src="/img/OWKVbShuHoFl9vxPMsncu9i0nTf.png" srcset="/img/loading.gif" lazyload></p>
+<p><code>stringFromJNI</code> 函数作用就是把 <code>Hello Hackers</code> 字符串打印出来（建议反编译 x86 架构的 so 文件，arm 架构反编译不出 <code>Hello Hackers</code> 这个字符串）</p>
+<p><img src="/img/Tjzcb1KE1oRez9x1sTOc0aaXnFg.png" srcset="/img/loading.gif" lazyload></p>
+<p>但是在符号表里面还没有被调用过的 <code>get_flag</code> 方法才是真正的 flag 生成逻辑</p>
+<p><img src="/img/UnYebC5W7osjhYxtBircQsElnDb.png" srcset="/img/loading.gif" lazyload></p>
+<p>这个算法很简单就是<strong>每个字符的 ASCII 值加上 2 * i</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">encrypted = <span class="hljs-string">&quot;FPE&gt;9q8A&gt;BK-)20A-#Y&quot;</span><br><br>flag = <span class="hljs-string">&#x27;&#x27;</span>.join(<span class="hljs-built_in">chr</span>(<span class="hljs-built_in">ord</span>(encrypted[i]) + <span class="hljs-number">2</span> * i) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(encrypted)))<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;[*] Decrypted flag:&quot;</span>, flag)<br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/AMOJbsPOqoBWLqxKV9rcIvgtnVg.png" srcset="/img/loading.gif" lazyload></p>
+<p>frida 也提供了可以主动调用 native 方法的 api</p>
+<p>遍历导出表</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> moduleName = <span class="hljs-string">&quot;libfrida0xa.so&quot;</span>;<br><span class="hljs-keyword">var</span> <span class="hljs-variable language_">module</span> = <span class="hljs-title class_">Process</span>.<span class="hljs-title function_">findModuleByName</span>(moduleName);<br><span class="hljs-keyword">if</span> (<span class="hljs-variable language_">module</span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[*] Found module: &quot;</span> + <span class="hljs-variable language_">module</span>.<span class="hljs-property">name</span> + <span class="hljs-string">&quot; at &quot;</span> + <span class="hljs-variable language_">module</span>.<span class="hljs-property">base</span>);<br>    <span class="hljs-keyword">var</span> a =  <span class="hljs-variable language_">module</span>.<span class="hljs-title function_">enumerateExports</span>();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; a.<span class="hljs-property">length</span>; i++) &#123;<br>        <span class="hljs-keyword">var</span> e = a[i];<br>        <span class="hljs-keyword">if</span> (e.<span class="hljs-property">name</span>.<span class="hljs-title function_">includes</span>(<span class="hljs-string">&quot;get_flag&quot;</span>))&#123;<br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[*] &quot;</span> + e.<span class="hljs-property">name</span> + <span class="hljs-string">&quot;: &quot;</span> + e.<span class="hljs-property">address</span>);<br>        &#125;<br>     &#125;<br>&#125;<span class="hljs-keyword">else</span>&#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[-] Module not found: &quot;</span> + moduleName);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>发现 <code>get_flag </code> 变成了 <code>_Z8get_flagii</code>，这是因为编译器需要为 C++ 中的所有函数，在符号表中生成唯一的标识符，来区分不同的函数，所以会重命名函数</p>
+<p><img src="/img/XjOsbDfWioCWy2xr6q8cHkDinvg.png" srcset="/img/loading.gif" lazyload></p>
+<p>因为函数还是有导出表的可以可以直接通过函数名获取地址后调用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> moduleName = <span class="hljs-string">&quot;libfrida0xa.so&quot;</span>;<br><span class="hljs-keyword">var</span> <span class="hljs-variable language_">module</span> = <span class="hljs-title class_">Process</span>.<span class="hljs-title function_">findModuleByName</span>(moduleName);<br><span class="hljs-keyword">if</span> (<span class="hljs-variable language_">module</span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[*] Found module: &quot;</span> + <span class="hljs-variable language_">module</span>.<span class="hljs-property">name</span> + <span class="hljs-string">&quot; at &quot;</span> + <span class="hljs-variable language_">module</span>.<span class="hljs-property">base</span>);<br>    <span class="hljs-keyword">var</span> a =  <span class="hljs-variable language_">module</span>.<span class="hljs-title function_">enumerateExports</span>();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; a.<span class="hljs-property">length</span>; i++) &#123;<br>        <span class="hljs-keyword">var</span> e = a[i];<br>        <span class="hljs-keyword">if</span> (e.<span class="hljs-property">name</span>.<span class="hljs-title function_">includes</span>(<span class="hljs-string">&quot;get_flag&quot;</span>))&#123;<br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[*] &quot;</span> + e.<span class="hljs-property">name</span> + <span class="hljs-string">&quot;: &quot;</span> + e.<span class="hljs-property">address</span>);<br>            <span class="hljs-keyword">var</span> target = e.<span class="hljs-property">address</span>;<br>            <span class="hljs-keyword">var</span> get_flag_ptr = <span class="hljs-keyword">new</span> <span class="hljs-title class_">NativePointer</span>(target);<br>            <span class="hljs-keyword">const</span> <span class="hljs-title class_">My</span>_get_flag = <span class="hljs-keyword">new</span> <span class="hljs-title class_">NativeFunction</span>(get_flag_ptr, <span class="hljs-string">&#x27;char&#x27;</span>, [<span class="hljs-string">&#x27;int&#x27;</span>, <span class="hljs-string">&#x27;int&#x27;</span>]);<br>            <span class="hljs-keyword">var</span> flag = <span class="hljs-title class_">My</span>_get_flag(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>);<br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(flag);<br><br>        &#125;<br>     &#125;<br>&#125;<span class="hljs-keyword">else</span>&#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[-] Module not found: &quot;</span> + moduleName);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>最好打印 flag 的使用 log 打印的所以得用 logcat 查看</p>
+<p><img src="/img/GpnHbEimzo1O27xR8wfcaLzgnDg.png" srcset="/img/loading.gif" lazyload></p>
+<p>日志刷新很快，不容易看到 flag，运用上关的知识 直接 hook <code>__android_log_print</code> 将 flag 打印到控制台</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs java">setTimeout(function() &#123;<br>    <span class="hljs-type">var</span> <span class="hljs-variable">loglib</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;liblog.so&quot;</span>;<br>    <span class="hljs-type">var</span> <span class="hljs-variable">log</span> <span class="hljs-operator">=</span> Process.findModuleByName(loglib);<br>    <span class="hljs-keyword">if</span> (log) &#123;<br>        console.log(<span class="hljs-string">&quot;[*] Found module: &quot;</span> + log.name + <span class="hljs-string">&quot; at &quot;</span> + log.base);<br>        <span class="hljs-type">var</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span>  log.enumerateExports();<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">var</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; a.length; i++) &#123;<br>            <span class="hljs-type">var</span> <span class="hljs-variable">e</span> <span class="hljs-operator">=</span> a[i];<br>            <span class="hljs-keyword">if</span> (e.name.includes(<span class="hljs-string">&quot;__android_log_print&quot;</span>))&#123;<br>                console.log(<span class="hljs-string">&quot;[*] &quot;</span> + e.name + <span class="hljs-string">&quot;: &quot;</span> + e.address);<br>            <span class="hljs-type">var</span> <span class="hljs-variable">logPrint</span> <span class="hljs-operator">=</span> e.address;<br>            Interceptor.attach(logPrint, &#123;<br>                onEnter: function(args) &#123;<br>                    <span class="hljs-type">var</span> <span class="hljs-variable">flagPtr</span> <span class="hljs-operator">=</span> args[<span class="hljs-number">3</span>];<br>                    <span class="hljs-type">var</span> <span class="hljs-variable">flagValue</span> <span class="hljs-operator">=</span> flagPtr.readCString();<br>                    console.log(<span class="hljs-string">&quot;[*] flag: &quot;</span> + flagValue + <span class="hljs-string">&quot;\n&quot;</span>);<br>                &#125;<br>        &#125;);<br><br>            &#125;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-type">var</span> <span class="hljs-variable">moduleName</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;libfrida0xa.so&quot;</span>;<br>    <span class="hljs-type">var</span> <span class="hljs-variable">module</span> <span class="hljs-operator">=</span> Process.findModuleByName(moduleName);<br>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">module</span>) &#123;<br>        console.log(<span class="hljs-string">&quot;[*] Found module: &quot;</span> + <span class="hljs-keyword">module</span>.name + <span class="hljs-string">&quot; at &quot;</span> + <span class="hljs-keyword">module</span>.base);<br>        <span class="hljs-type">var</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span>  <span class="hljs-keyword">module</span>.enumerateExports();<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">var</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; a.length; i++) &#123;<br>            <span class="hljs-type">var</span> <span class="hljs-variable">e</span> <span class="hljs-operator">=</span> a[i];<br>            <span class="hljs-keyword">if</span> (e.name.includes(<span class="hljs-string">&quot;get_flag&quot;</span>))&#123;<br>                console.log(<span class="hljs-string">&quot;[*] &quot;</span> + e.name + <span class="hljs-string">&quot;: &quot;</span> + e.address);<br>                <span class="hljs-type">var</span> <span class="hljs-variable">target</span> <span class="hljs-operator">=</span> e.address;<br>                <span class="hljs-type">var</span> <span class="hljs-variable">get_flag_ptr</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">NativePointer</span>(target);<br>                <span class="hljs-type">const</span> <span class="hljs-variable">My_get_flag</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">NativeFunction</span>(get_flag_ptr, <span class="hljs-string">&#x27;char&#x27;</span>, [<span class="hljs-string">&#x27;int&#x27;</span>, <span class="hljs-string">&#x27;int&#x27;</span>]);<br>                <span class="hljs-type">var</span> <span class="hljs-variable">flag</span> <span class="hljs-operator">=</span> My_get_flag(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>);<br>            &#125;<br>         &#125;<br>    &#125;<span class="hljs-keyword">else</span>&#123;<br>        console.log(<span class="hljs-string">&quot;[-] Module not found: &quot;</span> + moduleName);<br>    &#125;<br>&#125;, <span class="hljs-number">2000</span>);<br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/VStAbAkgnoXZ9uxnj4bczLkknmo.png" srcset="/img/loading.gif" lazyload></p>
+<p>由于 ALSR（地址随机化）的问题，每次运行的时候函数的地址都是不同的，但变化的只是基址，计算出偏移就可以在后续运行的时候直接访问到函数的地址</p>
+<p><strong>偏移 &#x3D; 函数地址 - 模块基地址</strong></p>
+<p><img src="/img/UaWRbuzROoqcBcxejt1ckYENnag.png" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">var</span> <span class="hljs-variable">adr</span> <span class="hljs-operator">=</span> Module.findBaseAddress(<span class="hljs-string">&quot;libfrida0xa.so&quot;</span>).add(<span class="hljs-number">0x18BB0</span>) <br><span class="hljs-type">var</span> <span class="hljs-variable">get_flag_ptr</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">NativePointer</span>(adr);<br><span class="hljs-type">const</span> <span class="hljs-variable">get_flag</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">NativeFunction</span>(get_flag_ptr, <span class="hljs-string">&#x27;void&#x27;</span>, [<span class="hljs-string">&#x27;int&#x27;</span>, <span class="hljs-string">&#x27;int&#x27;</span>]);<br>get_flag(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>);<br></code></pre></td></tr></table></figure>
+
+<h1 id="0xB"><a href="#0xB" class="headerlink" title="0xB"></a>0xB</h1><p>提供了一个 onCreate 方法在点击的时候会调用</p>
+<p><img src="/img/XXyvbvt4NolkYvxPERBcIhnBnew.png" srcset="/img/loading.gif" lazyload></p>
+<p>但是直接点并不会弹 flag</p>
+<p><img src="/img/Czumb2PJHo40aPx7OXKcMsdnnqc.png" srcset="/img/loading.gif" lazyload></p>
+<p>反编译 JNI 函数的时候，发现反编译失败，也就是这个原因导致返回不出内容</p>
+<p><img src="/img/PTlHb8Y7Gog49px4V5RcNMdjnlh.png" srcset="/img/loading.gif" lazyload></p>
+<p>反编译器（如 IDA Pro 的 Hex-Rays Decompiler、Ghidra 的 Decompiler、RetDec 等）在分析并尝试将 汇编代码（或机器码）还原为高级语言（如 C&#x2F;C++）代码 的过程中，会应用一系列 优化与分析策略，比如<strong>自动丢弃不可达代码块</strong></p>
+<p><img src="/img/WyFgbmea2oslkIxwWOYcsgKDnkd.png" srcset="/img/loading.gif" lazyload></p>
+<p>直接查看汇编，发现函数一开始会直接去比较 <code>0xdeadbeef</code> 与 <code>0x539</code> 的值，但这两个值永远不可能相等就会 jmp 到 <code>loc_171A6</code>，也就直接 retn 了，所以返回不出任何内容，与花指令的不同的是，这种指令直接影响了代码的执行逻辑</p>
+<p><img src="/img/QyJAbllh9oriKDxDVkkcehlMnmd.png" srcset="/img/loading.gif" lazyload></p>
+<p>将中间的 <code>不可达代码块（Unreachable Code</code> NOP 掉后就能正常反编译伪代码了</p>
+<p><img src="/img/DNFrbHeB7oRhMyxe5gacVRobnXd.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/img/Amy0b98FEoFnfSxyX6GcSwWQncf.png" srcset="/img/loading.gif" lazyload></p>
+<p>解密代码也很简单，就是将每个字符的 ASCII 值异或 0x2c</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">encrypted = <span class="hljs-string">&quot;j~ehmWbmxezisdmogi~Q&quot;</span><br><br>flag = <span class="hljs-string">&#x27;&#x27;</span>.join(<span class="hljs-built_in">chr</span>(<span class="hljs-built_in">ord</span>(encrypted[i]) ^ <span class="hljs-number">0x2c</span>) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(encrypted)))<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;[*] Decrypted flag:&quot;</span>, flag)<br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/VhM6bjDhVoP6Jqxe9p0cL1nBn19.png" srcset="/img/loading.gif" lazyload></p>
+<p>但这种解法依赖于手动 patch so 文件，我们也可以直接用 frida 在 app 运行时直接修改 native 代码</p>
+<p>计算 NE 指令的偏移</p>
+<p>0x15248 - 0x15220 &#x3D; 0x28</p>
+<p><img src="/img/EtNPblR9BoN8OHxZGqVcRSjpnYf.png" srcset="/img/loading.gif" lazyload></p>
+<p>可以直接通过 frida 打印内存中的汇编代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> moduleName = <span class="hljs-string">&quot;libfrida0xb.so&quot;</span>;<br><span class="hljs-keyword">var</span> <span class="hljs-variable language_">module</span> = <span class="hljs-title class_">Process</span>.<span class="hljs-title function_">findModuleByName</span>(moduleName);<br><span class="hljs-keyword">if</span> (<span class="hljs-variable language_">module</span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[*] Found module: &quot;</span> + <span class="hljs-variable language_">module</span>.<span class="hljs-property">name</span> + <span class="hljs-string">&quot; at &quot;</span> + <span class="hljs-variable language_">module</span>.<span class="hljs-property">base</span>);<br>    <span class="hljs-keyword">var</span> a =  <span class="hljs-variable language_">module</span>.<span class="hljs-title function_">enumerateExports</span>();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; a.<span class="hljs-property">length</span>; i++) &#123;<br>        <span class="hljs-keyword">var</span> e = a[i];<br>        <span class="hljs-keyword">if</span> (e.<span class="hljs-property">name</span>.<span class="hljs-title function_">includes</span>(<span class="hljs-string">&quot;getFlag&quot;</span>))&#123;<br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[*] &quot;</span> + e.<span class="hljs-property">name</span> + <span class="hljs-string">&quot;: &quot;</span> + e.<span class="hljs-property">address</span>);<br><br>            <span class="hljs-keyword">var</span> be = e.<span class="hljs-property">address</span>.<span class="hljs-title function_">add</span>(<span class="hljs-number">0x28</span>);<br>            <span class="hljs-keyword">var</span> currentAddr = e.<span class="hljs-property">address</span>;<br><br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">15</span>; i++) &#123; <br>                <span class="hljs-keyword">const</span> instr = <span class="hljs-title class_">Instruction</span>.<span class="hljs-title function_">parse</span>(currentAddr);<br>                <span class="hljs-keyword">if</span> (!instr) &#123;<br>                    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`[!] 无法解析地址: <span class="hljs-subst">$&#123;currentAddr&#125;</span>`</span>);<br>                    <span class="hljs-keyword">break</span>;<br>                &#125;<br>                <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`<span class="hljs-subst">$&#123;instr.address&#125;</span>    <span class="hljs-subst">$&#123;instr.toString()&#125;</span>`</span>);<br>                currentAddr = instr.<span class="hljs-property">next</span>; <br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>可以看到偏移 0x28 后的指令是 <code>b #0x6fc8055248</code>，但根据 ida 反编译的汇编以及上下文来看，BE 跳转指令确实在这个地址上</p>
+<p><img src="/img/WK3wb7QmgoLaXtxnslxc6i2On4O.png" srcset="/img/loading.gif" lazyload></p>
+<p>由于 arm64 架构没有类似 nop 这样的指令，所以只能将指令修改为跳转到下一条指令来绕过</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-built_in">setTimeout</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">var</span> loglib = <span class="hljs-string">&quot;liblog.so&quot;</span>;<br>    <span class="hljs-keyword">var</span> log = <span class="hljs-title class_">Process</span>.<span class="hljs-title function_">findModuleByName</span>(loglib);<br>    <span class="hljs-keyword">if</span> (log) &#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[*] Found module: &quot;</span> + log.<span class="hljs-property">name</span> + <span class="hljs-string">&quot; at &quot;</span> + log.<span class="hljs-property">base</span>);<br>        <span class="hljs-keyword">var</span> a =  log.<span class="hljs-title function_">enumerateExports</span>();<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; a.<span class="hljs-property">length</span>; i++) &#123;<br>            <span class="hljs-keyword">var</span> e = a[i];<br>            <span class="hljs-keyword">if</span> (e.<span class="hljs-property">name</span>.<span class="hljs-title function_">includes</span>(<span class="hljs-string">&quot;__android_log_print&quot;</span>))&#123;<br>                <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[*] &quot;</span> + e.<span class="hljs-property">name</span> + <span class="hljs-string">&quot;: &quot;</span> + e.<span class="hljs-property">address</span>);<br>            <span class="hljs-keyword">var</span> logPrint = e.<span class="hljs-property">address</span>;<br>            <span class="hljs-title class_">Interceptor</span>.<span class="hljs-title function_">attach</span>(logPrint, &#123;<br>                <span class="hljs-attr">onEnter</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params">args</span>) &#123;<br>                    <span class="hljs-keyword">var</span> flagPtr = args[<span class="hljs-number">3</span>];<br>                    <span class="hljs-keyword">var</span> flagValue = flagPtr.<span class="hljs-title function_">readCString</span>();<br>                    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[*] flag: &quot;</span> + flagValue + <span class="hljs-string">&quot;\n&quot;</span>);<br>                &#125;<br>        &#125;);<br><br>            &#125;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">var</span> moduleName = <span class="hljs-string">&quot;libfrida0xb.so&quot;</span>;<br>    <span class="hljs-keyword">var</span> <span class="hljs-variable language_">module</span> = <span class="hljs-title class_">Process</span>.<span class="hljs-title function_">findModuleByName</span>(moduleName);<br>    <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">module</span>) &#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[*] Found module: &quot;</span> + <span class="hljs-variable language_">module</span>.<span class="hljs-property">name</span> + <span class="hljs-string">&quot; at &quot;</span> + <span class="hljs-variable language_">module</span>.<span class="hljs-property">base</span>);<br>        <span class="hljs-keyword">var</span> a =  <span class="hljs-variable language_">module</span>.<span class="hljs-title function_">enumerateExports</span>();<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; a.<span class="hljs-property">length</span>; i++) &#123;<br>            <span class="hljs-keyword">var</span> e = a[i];<br>            <span class="hljs-keyword">if</span> (e.<span class="hljs-property">name</span>.<span class="hljs-title function_">includes</span>(<span class="hljs-string">&quot;getFlag&quot;</span>))&#123;<br>                <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[*] &quot;</span> + e.<span class="hljs-property">name</span> + <span class="hljs-string">&quot;: &quot;</span> + e.<span class="hljs-property">address</span>);<br><br>                <span class="hljs-keyword">var</span> be = e.<span class="hljs-property">address</span>.<span class="hljs-title function_">add</span>(<span class="hljs-number">0x28</span>);<br>                <span class="hljs-keyword">var</span> target = be.<span class="hljs-title function_">add</span>(<span class="hljs-number">0x4</span>);<br>                <span class="hljs-keyword">var</span> currentAddr = e.<span class="hljs-property">address</span>;<br><br>                <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">15</span>; i++) &#123;<br>                    <span class="hljs-keyword">const</span> instr = <span class="hljs-title class_">Instruction</span>.<span class="hljs-title function_">parse</span>(currentAddr);<br>                    <span class="hljs-keyword">if</span> (!instr) &#123;<br>                        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`[!] 无法解析地址: <span class="hljs-subst">$&#123;currentAddr&#125;</span>`</span>);<br>                        <span class="hljs-keyword">break</span>;<br>                    &#125;<br>                    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`<span class="hljs-subst">$&#123;instr.address&#125;</span>    <span class="hljs-subst">$&#123;instr.toString()&#125;</span>`</span>);<br>                    currentAddr = instr.<span class="hljs-property">next</span>;<br>                &#125;<br>                <span class="hljs-title class_">Memory</span>.<span class="hljs-title function_">protect</span>(be, <span class="hljs-number">0x1000</span>, <span class="hljs-string">&quot;rwx&quot;</span>);<br>                <span class="hljs-keyword">var</span> writer = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Arm64Writer</span>(be);<br>                <span class="hljs-keyword">try</span>&#123;<br><br>                    writer.<span class="hljs-title function_">putBImm</span>(target);  <span class="hljs-comment">//修改be为bl 跳转到下一条指令</span><br>                    writer.<span class="hljs-title function_">flush</span>();<br><br>                &#125; <span class="hljs-keyword">finally</span> &#123;<br><br>                    writer.<span class="hljs-title function_">dispose</span>();<br><br>                &#125;<br><br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;, <span class="hljs-number">2000</span>);<br></code></pre></td></tr></table></figure>
+
+<p>需要点击一下按钮才能触发</p>
+<p><img src="/img/UCf9bFWkWokJnPx9a01cpIH2nLb.png" srcset="/img/loading.gif" lazyload></p>
+<p>结合前面几关的内容，我们可以直接主动调用 native 方法自动输出 flag</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-built_in">setTimeout</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">var</span> loglib = <span class="hljs-string">&quot;liblog.so&quot;</span>;<br>    <span class="hljs-keyword">var</span> log = <span class="hljs-title class_">Process</span>.<span class="hljs-title function_">findModuleByName</span>(loglib);<br>    <span class="hljs-keyword">if</span> (log) &#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[*] Found module: &quot;</span> + log.<span class="hljs-property">name</span> + <span class="hljs-string">&quot; at &quot;</span> + log.<span class="hljs-property">base</span>);<br>        <span class="hljs-keyword">var</span> a =  log.<span class="hljs-title function_">enumerateExports</span>();<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; a.<span class="hljs-property">length</span>; i++) &#123;<br>            <span class="hljs-keyword">var</span> e = a[i];<br>            <span class="hljs-keyword">if</span> (e.<span class="hljs-property">name</span>.<span class="hljs-title function_">includes</span>(<span class="hljs-string">&quot;__android_log_print&quot;</span>))&#123;<br>                <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[*] &quot;</span> + e.<span class="hljs-property">name</span> + <span class="hljs-string">&quot;: &quot;</span> + e.<span class="hljs-property">address</span>);<br>            <span class="hljs-keyword">var</span> logPrint = e.<span class="hljs-property">address</span>;<br>            <span class="hljs-title class_">Interceptor</span>.<span class="hljs-title function_">attach</span>(logPrint, &#123;<br>                <span class="hljs-attr">onEnter</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params">args</span>) &#123;<br>                    <span class="hljs-keyword">var</span> flagPtr = args[<span class="hljs-number">3</span>];<br>                    <span class="hljs-keyword">var</span> flagValue = flagPtr.<span class="hljs-title function_">readCString</span>();<br>                    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[*] flag: &quot;</span> + flagValue + <span class="hljs-string">&quot;\n&quot;</span>);<br>                &#125;<br>        &#125;);<br><br>            &#125;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">var</span> moduleName = <span class="hljs-string">&quot;libfrida0xb.so&quot;</span>;<br>    <span class="hljs-keyword">var</span> <span class="hljs-variable language_">module</span> = <span class="hljs-title class_">Process</span>.<span class="hljs-title function_">findModuleByName</span>(moduleName);<br>    <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">module</span>) &#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[*] Found module: &quot;</span> + <span class="hljs-variable language_">module</span>.<span class="hljs-property">name</span> + <span class="hljs-string">&quot; at &quot;</span> + <span class="hljs-variable language_">module</span>.<span class="hljs-property">base</span>);<br>        <span class="hljs-keyword">var</span> a =  <span class="hljs-variable language_">module</span>.<span class="hljs-title function_">enumerateExports</span>();<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; a.<span class="hljs-property">length</span>; i++) &#123;<br>            <span class="hljs-keyword">var</span> e = a[i];<br>            <span class="hljs-keyword">if</span> (e.<span class="hljs-property">name</span>.<span class="hljs-title function_">includes</span>(<span class="hljs-string">&quot;getFlag&quot;</span>))&#123;<br>                <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[*] &quot;</span> + e.<span class="hljs-property">name</span> + <span class="hljs-string">&quot;: &quot;</span> + e.<span class="hljs-property">address</span>);<br><br>                <span class="hljs-keyword">var</span> be = e.<span class="hljs-property">address</span>.<span class="hljs-title function_">add</span>(<span class="hljs-number">0x28</span>);<br>                <span class="hljs-keyword">var</span> target = be.<span class="hljs-title function_">add</span>(<span class="hljs-number">0x4</span>);<br>                <span class="hljs-keyword">var</span> currentAddr = e.<span class="hljs-property">address</span>;<br><br>                <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">15</span>; i++) &#123;<br>                    <span class="hljs-keyword">const</span> instr = <span class="hljs-title class_">Instruction</span>.<span class="hljs-title function_">parse</span>(currentAddr);<br>                    <span class="hljs-keyword">if</span> (!instr) &#123;<br>                        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`[!] 无法解析地址: <span class="hljs-subst">$&#123;currentAddr&#125;</span>`</span>);<br>                        <span class="hljs-keyword">break</span>;<br>                    &#125;<br>                    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`<span class="hljs-subst">$&#123;instr.address&#125;</span>    <span class="hljs-subst">$&#123;instr.toString()&#125;</span>`</span>);<br>                    currentAddr = instr.<span class="hljs-property">next</span>;<br>                &#125;<br>                <span class="hljs-title class_">Memory</span>.<span class="hljs-title function_">protect</span>(be, <span class="hljs-number">0x1000</span>, <span class="hljs-string">&quot;rwx&quot;</span>);<br>                <span class="hljs-keyword">var</span> writer = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Arm64Writer</span>(be);<br>                <span class="hljs-keyword">try</span>&#123;<br><br>                    writer.<span class="hljs-title function_">putBImm</span>(target);<br>                    writer.<span class="hljs-title function_">flush</span>();<br><br>                &#125; <span class="hljs-keyword">finally</span> &#123;<br><br>                    writer.<span class="hljs-title function_">dispose</span>();<br><br>                &#125;<br><br>                <span class="hljs-comment">//主动调用get_flag方法</span><br>                <span class="hljs-keyword">var</span> target = e.<span class="hljs-property">address</span>;<br>                <span class="hljs-keyword">var</span> get_flag_ptr = <span class="hljs-keyword">new</span> <span class="hljs-title class_">NativePointer</span>(target);<br>                <span class="hljs-keyword">const</span> <span class="hljs-title class_">My</span>_get_flag = <span class="hljs-keyword">new</span> <span class="hljs-title class_">NativeFunction</span>(get_flag_ptr, <span class="hljs-string">&#x27;void&#x27;</span>, []);<br>                <span class="hljs-keyword">var</span> flag = <span class="hljs-title class_">My</span>_get_flag();<br><br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;, <span class="hljs-number">2000</span>);<br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/FhmAb0ehjoXgdux49V5cj3CSnmb.png" srcset="/img/loading.gif" lazyload></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8/" class="category-chain-item">移动安全</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/WP/" class="print-no-link">#WP</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>frida-labs WP</div>
+      <div>http://example.com/2025/09/07/frida-labs-WP/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Gilgamesh</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年9月7日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/09/07/frida17%E8%B8%A9%E5%9D%91/" title="frida17踩坑">
+                        <span class="hidden-mobile">frida17踩坑</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
